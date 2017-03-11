@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Sort.AI
 {
-    public partial class Service1 : ServiceBase
+    public partial class SortAiService : ServiceBase
     {
-        public Service1()
+        public SortAiService()
         {
             InitializeComponent();
         }

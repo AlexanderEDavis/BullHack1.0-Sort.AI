@@ -17,7 +17,7 @@ namespace Sort.AI
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                new Service1()
+                new SortAiService()
             };
             ServiceBase.Run(ServicesToRun);
         }
