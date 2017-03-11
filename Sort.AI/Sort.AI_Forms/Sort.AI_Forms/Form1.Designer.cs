@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.txtSourceLocation = new System.Windows.Forms.TextBox();
             this.txtDestLocation = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -125,6 +126,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDestLocation);
             this.Controls.Add(this.txtSourceLocation);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Sort.AI";
             this.ResumeLayout(false);
