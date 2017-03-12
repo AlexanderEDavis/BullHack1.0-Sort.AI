@@ -9,13 +9,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
-namespace Sort.AI_Forms
+namespace WindowsFormsApp1
 {
-    public partial class Form1 : Form
+    public partial class SortAISettings : Form
     {
-        public Form1()
+        public SortAISettings()
         {
             InitializeComponent();
+            SortAIcon.BalloonTipText = "Sort.AI Is Running In The Background";
+            SortAIcon.BalloonTipTitle = "Sort.AI";
+            SortAIcon.BalloonTipIcon = ToolTipIcon.Info;
+
         }
 
         private void readFiles(string fileName, string filePath)
@@ -49,7 +53,7 @@ namespace Sort.AI_Forms
             }
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void SortAISettings_Resize(object sender, EventArgs e)
         {
             if (FormWindowState.Minimized == this.WindowState)
             {
@@ -61,6 +65,12 @@ namespace Sort.AI_Forms
             {
                 SortAIcon.Visible = false;
             }
+        }
+
+        private void SortAIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
         }
     }
 }

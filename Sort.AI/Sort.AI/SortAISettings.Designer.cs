@@ -1,6 +1,6 @@
-﻿namespace Sort.AI_Forms
+﻿namespace WindowsFormsApp1
 {
-    partial class Form1
+    partial class SortAISettings
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SortAISettings));
             this.txtSourceLocation = new System.Windows.Forms.TextBox();
             this.txtDestLocation = new System.Windows.Forms.TextBox();
             this.lblSource = new System.Windows.Forms.Label();
@@ -151,10 +151,11 @@
             // SortAIcon
             // 
             this.SortAIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("SortAIcon.Icon")));
-            this.SortAIcon.Text = "SortAIcon";
+            this.SortAIcon.Text = "Sort.AI";
             this.SortAIcon.Visible = true;
+            this.SortAIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.SortAIcon_MouseDoubleClick);
             // 
-            // Form1
+            // SortAISettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -170,10 +171,11 @@
             this.Controls.Add(this.txtDestLocation);
             this.Controls.Add(this.txtSourceLocation);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.MaximizeBox = false;
+            this.Name = "SortAISettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sort.AI Settings";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Resize += new System.EventHandler(this.SortAISettings_Resize);
             this.grpInfo.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
