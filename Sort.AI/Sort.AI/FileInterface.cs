@@ -61,11 +61,11 @@ namespace Sort.AI
                     Content = text,
                     Type = Document.Types.Type.PlainText
                 });
-                WriteEntities(response.Entities);
+                entityDetermination(response.Entities);
             }
 
         // [START analyze_entities_from_file]
-        public static string WriteEntities(IEnumerable<Entity> entities)
+        public static string entityDetermination(IEnumerable<Entity> entities)
         {
             string maxMentionsName = "";
             int maxMentionsNum = 0;
@@ -101,6 +101,7 @@ namespace Sort.AI
             // [END analyze_entities_from_file]
             // [END analyze_entities_from_string]
             
+            [STAThread]
             public static void Main(string[] args)
             {
                 if (args.Length < 2)
