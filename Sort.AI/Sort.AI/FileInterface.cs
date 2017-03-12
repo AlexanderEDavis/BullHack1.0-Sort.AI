@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using Google.Cloud.Language.V1;
 using System.Collections.Generic;
+using Google.Api;
 using static Google.Cloud.Language.V1.AnnotateTextRequest.Types;
 
 namespace Sort.AI
@@ -17,24 +18,13 @@ namespace Sort.AI
                 //Read text from given file
                 SortAISettings.ReadFiles(file.Name, file.FullName);
                 //HTTP POST Request
-                AnalyzeEntitiesFromText(SortAISettings.fileRead);
+                Analyze.AnalyzeEntitiesFromText(SortAISettings.fileRead);
             }
             //Recursively call PopulateFromFolder on each directory in root directory
             foreach (DirectoryInfo dir in di.GetDirectories())
             {
                 PopulateFromFolder(dir, basePath);
             }
-        }
-
-        private static void AnalyzeEntitiesFromText(string text)
-        {
-            var client = LanguageServiceClient.Create();
-            var response = client.AnalyzeEntities(new Document()
-            {
-                Content = text,
-                Type = Document.Types.Type.PlainText
-            });
-            Analyze.WriteEntities(response.Entities);
         }
 
         private void ProgramFolder(string path)
@@ -63,7 +53,7 @@ namespace Sort.AI
         public class Analyze
         {
             // [START analyze_entities_from_string]
-            private static void AnalyzeEntitiesFromText(string text)
+            public static void AnalyzeEntitiesFromText(string text)
             {
                 var client = LanguageServiceClient.Create();
                 var response = client.AnalyzeEntities(new Document()
@@ -93,100 +83,7 @@ namespace Sort.AI
             }
             // [END analyze_entities_from_file]
             // [END analyze_entities_from_string]
-
-            // [START analyze_sentiment_from_file]
-            private static void AnalyzeSentimentFromFile(string gcsUri)
-            {
-                var client = LanguageServiceClient.Create();
-                var response = client.AnalyzeSentiment(new Document()
-                {
-                    GcsContentUri = gcsUri,
-                    Type = Document.Types.Type.PlainText
-                });
-                WriteSentiment(response.DocumentSentiment);
-            }
-            // [END analyze_sentiment_from_file]
-
-            // [START analyze_sentiment_from_string]
-            private static void AnalyzeSentimentFromText(string text)
-            {
-                var client = LanguageServiceClient.Create();
-                var response = client.AnalyzeSentiment(new Document()
-                {
-                    Content = text,
-                    Type = Document.Types.Type.PlainText
-                });
-                WriteSentiment(response.DocumentSentiment);
-            }
-
-            // [START analyze_sentiment_from_file]
-            private static void WriteSentiment(Sentiment sentiment)
-            {
-                Console.WriteLine($"Score: {sentiment.Score}");
-                Console.WriteLine($"Magnitude: {sentiment.Magnitude}");
-            }
-            // [END analyze_sentiment_from_file]
-            // [END analyze_sentiment_from_string]
-
-            // [START analyze_syntax_from_file]
-            private static void AnalyzeSyntaxFromFile(string gcsUri)
-            {
-                var client = LanguageServiceClient.Create();
-                var response = client.AnnotateText(new Document()
-                {
-                    GcsContentUri = gcsUri,
-                    Type = Document.Types.Type.PlainText
-                },
-                new Features() { ExtractSyntax = true });
-                WriteSentences(response.Sentences);
-            }
-            // [END analyze_syntax_from_file]
-
-            // [START analyze_syntax_from_string]
-            private static void AnalyzeSyntaxFromText(string text)
-            {
-                var client = LanguageServiceClient.Create();
-                var response = client.AnnotateText(new Document()
-                {
-                    Content = text,
-                    Type = Document.Types.Type.PlainText
-                },
-                new Features() { ExtractSyntax = true });
-                WriteSentences(response.Sentences);
-            }
-
-            // [START analyze_syntax_from_file]
-            private static void WriteSentences(IEnumerable<Sentence> sentences)
-            {
-                Console.WriteLine("Sentences:");
-                foreach (var sentence in sentences)
-                {
-                    Console.WriteLine($"\t{sentence.Text.BeginOffset}: {sentence.Text.Content}");
-                }
-            }
-            // [END analyze_syntax_from_file]
-            // [END analyze_syntax_from_string]
-
-            private static void AnalyzeEverything(string text)
-            {
-                var client = LanguageServiceClient.Create();
-                var response = client.AnnotateText(new Document()
-                {
-                    Content = text,
-                    Type = Document.Types.Type.PlainText
-                },
-                new Features()
-                {
-                    ExtractSyntax = true,
-                    ExtractDocumentSentiment = true,
-                    ExtractEntities = true,
-                });
-                Console.WriteLine($"Language: {response.Language}");
-                WriteSentiment(response.DocumentSentiment);
-                WriteSentences(response.Sentences);
-                WriteEntities(response.Entities);
-            }
-
+            
             public static void Main(string[] args)
             {
                 if (args.Length < 2)
@@ -203,28 +100,7 @@ namespace Sort.AI
                     case "entities":
                         if (null == gcsUri)
                             AnalyzeEntitiesFromText(text);
-                        else
-                            AnalyzeEntitiesFromFile(gcsUri);
                         break;
-
-                    case "syntax":
-                        if (null == gcsUri)
-                            AnalyzeSyntaxFromText(text);
-                        else
-                            AnalyzeSyntaxFromFile(gcsUri);
-                        break;
-
-                    case "sentiment":
-                        if (null == gcsUri)
-                            AnalyzeSentimentFromText(text);
-                        else
-                            AnalyzeSentimentFromFile(gcsUri);
-                        break;
-
-                    case "everything":
-                        AnalyzeEverything(text);
-                        break;
-
                     default:
                         Console.Write(Usage);
                         return;
