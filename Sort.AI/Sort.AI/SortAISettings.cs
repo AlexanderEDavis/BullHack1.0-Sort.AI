@@ -80,5 +80,29 @@ namespace Sort.AI
                 this.Show();
                 this.WindowState = FormWindowState.Normal;
         }
+
+        private void txtSourceLocation_Validating(object sender, CancelEventArgs e)
+        {
+            if (Directory.Exists(txtSourceLocation.Text) == false)
+            {
+                lblValidDir.Visible = true;
+            }
+            else
+            {
+                lblValidDir.Visible = false;
+            }
+        }
+
+        private void txtDestLocation_Validating(object sender, CancelEventArgs e)
+        {
+            if (Directory.Exists(txtSourceLocation.Text) == false)
+            {
+                lblValidDir.Visible = true;
+            }
+            else
+            {
+                lblValidDir.Visible = false;
+            }
+        }
     }
 }

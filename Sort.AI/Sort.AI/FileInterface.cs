@@ -88,7 +88,7 @@ namespace Sort.AI
             {
                 if (args.Length < 2)
                 {
-                    Console.Write(Usage);
+                    Console.Write(Usage.Descriptor);
                     return;
                 }
                 string command = args[0].ToLower();
@@ -102,7 +102,7 @@ namespace Sort.AI
                             AnalyzeEntitiesFromText(text);
                         break;
                     default:
-                        Console.Write(Usage);
+                        Console.Write(Usage.Descriptor);
                         return;
                 }
             }
