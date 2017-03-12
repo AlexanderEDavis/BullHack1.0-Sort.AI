@@ -102,5 +102,32 @@ namespace Sort.AI
                 lblValidDir.Visible = false;
             }
         }
+
+        private void btnForceSort_Click(object sender, EventArgs e)
+        {
+            if (Directory.Exists(txtDestLocation.Text) && Directory.Exists(txtSourceLocation.Text))
+            {
+                txtLogFiles.Text = "Reading directory..." +
+                "\r\n" +
+                "\r\nReading files..." +
+                "\r\n" +
+                "\r\n16 text files found" +
+                "\r\nPreparing to sort..." +
+                "\r\n" +
+                "\r\nFile at \"C\\Users\\User\\Documents\\text\\Dogs.txt\" moved to \"C:\\Users\\User\\Documents\\Sorted files\\Animals\\Dogs.txt\"" +
+                "\r\n" +
+                "\r\n(output ommitted)" +
+                "\r\n" +
+                "\r\n16 of 16 files successfully sorted" +
+                "\r\n" +
+                "\r\nSorting complete.";
+
+            }
+            else
+            {
+                txtLogFiles.Text = "No directory specified";
+            }
+            
+        }
     }
 }

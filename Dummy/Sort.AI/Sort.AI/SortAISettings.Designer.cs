@@ -111,6 +111,7 @@
             this.btnForceSort.TabIndex = 5;
             this.btnForceSort.Text = "Force Sort";
             this.btnForceSort.UseVisualStyleBackColor = true;
+            this.btnForceSort.Click += new System.EventHandler(this.btnForceSort_Click);
             // 
             // grpInfo
             // 
