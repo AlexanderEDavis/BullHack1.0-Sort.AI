@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApp1
+﻿namespace Sort.AI
 {
     partial class SortAISettings
     {

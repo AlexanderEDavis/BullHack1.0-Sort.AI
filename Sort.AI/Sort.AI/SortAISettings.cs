@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
-namespace WindowsFormsApp1
+namespace Sort.AI
 {
     public partial class SortAISettings : Form
     {
+        public static string fileRead;
+
         public SortAISettings()
         {
             InitializeComponent();
@@ -22,13 +24,14 @@ namespace WindowsFormsApp1
 
         }
 
-        private void readFiles(string fileName, string filePath)
+        public static string readFiles(string fileName, string filePath)
         {
             string fileExt = Path.GetExtension(fileName);
             string[] acceptedExtensions = { ".txt" };
             if (acceptedExtensions.Contains(fileExt))
             {
                 string textContent = File.ReadAllText(filePath);
+                return fileRead;
             }
 
         }

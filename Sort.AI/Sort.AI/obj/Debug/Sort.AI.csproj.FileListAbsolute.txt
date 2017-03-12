@@ -1,9 +1,8 @@
-D:\BullHack1.0-Sort.AI\Sort.AI\Sort.AI\obj\Debug\Sort.AI.csprojResolveAssemblyReference.cache
+D:\BullHack1.0-Sort.AI\Sort.AI\Sort.AI\obj\Debug\Sort.AI.SortAISettings.resources
 D:\BullHack1.0-Sort.AI\Sort.AI\Sort.AI\obj\Debug\Sort.AI.Properties.Resources.resources
 D:\BullHack1.0-Sort.AI\Sort.AI\Sort.AI\obj\Debug\Sort.AI.csproj.GenerateResource.Cache
 D:\BullHack1.0-Sort.AI\Sort.AI\Sort.AI\bin\Debug\Sort.AI.exe.config
 D:\BullHack1.0-Sort.AI\Sort.AI\Sort.AI\bin\Debug\Sort.AI.exe
 D:\BullHack1.0-Sort.AI\Sort.AI\Sort.AI\bin\Debug\Sort.AI.pdb
-D:\BullHack1.0-Sort.AI\Sort.AI\Sort.AI\obj\Debug\Sort.AI_Forms.Form1.resources
 D:\BullHack1.0-Sort.AI\Sort.AI\Sort.AI\obj\Debug\Sort.AI.exe
 D:\BullHack1.0-Sort.AI\Sort.AI\Sort.AI\obj\Debug\Sort.AI.pdb
