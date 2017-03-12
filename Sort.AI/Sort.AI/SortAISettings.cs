@@ -48,5 +48,19 @@ namespace Sort.AI_Forms
                 txtDestLocation.Text = destinationDialog.SelectedPath;
             }
         }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (FormWindowState.Minimized == this.WindowState)
+            {
+                SortAIcon.Visible = true;
+                SortAIcon.ShowBalloonTip(500);
+                this.Hide();
+            }
+            else if (FormWindowState.Normal == this.WindowState)
+            {
+                SortAIcon.Visible = false;
+            }
+        }
     }
 }

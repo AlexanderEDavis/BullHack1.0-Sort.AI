@@ -1,6 +1,6 @@
-﻿namespace Sort.AI_Forms
+﻿namespace WindowsFormsApp1
 {
-    partial class Form1
+    partial class SortAISettings
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SortAISettings));
             this.txtSourceLocation = new System.Windows.Forms.TextBox();
             this.txtDestLocation = new System.Windows.Forms.TextBox();
             this.lblSource = new System.Windows.Forms.Label();
@@ -42,6 +43,7 @@
             this.lblInfo = new System.Windows.Forms.Label();
             this.txtLogFiles = new System.Windows.Forms.TextBox();
             this.lblLogFiles = new System.Windows.Forms.Label();
+            this.SortAIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.grpInfo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -146,7 +148,13 @@
             this.lblLogFiles.TabIndex = 2;
             this.lblLogFiles.Text = "Log Files";
             // 
-            // Form1
+            // SortAIcon
+            // 
+            this.SortAIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("SortAIcon.Icon")));
+            this.SortAIcon.Text = "SortAIcon";
+            this.SortAIcon.Visible = true;
+            // 
+            // SortAISettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -162,8 +170,11 @@
             this.Controls.Add(this.txtDestLocation);
             this.Controls.Add(this.txtSourceLocation);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.MaximizeBox = false;
+            this.Name = "SortAISettings";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sort.AI Settings";
+            this.ResizeBegin += new System.EventHandler(this.SortAISettings_ResizeBegin);
             this.grpInfo.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -185,6 +196,7 @@
         private System.Windows.Forms.Label lblInfo;
         private System.Windows.Forms.TextBox txtLogFiles;
         private System.Windows.Forms.Label lblLogFiles;
+        private System.Windows.Forms.NotifyIcon SortAIcon;
     }
 }
 
