@@ -10,7 +10,7 @@ namespace Sort.AI
 {
     public class FileInterface
     {
-        private void PopulateFromFolder(DirectoryInfo di, String basePath)
+        public void PopulateFromFolder(DirectoryInfo di, String basePath)
         {
             //Iterate through files in directory 'di'
             foreach (FileInfo file in di.GetFiles())
@@ -27,7 +27,7 @@ namespace Sort.AI
             }
         }
 
-        private void ProgramFolder(string path)
+        public void ProgramFolder(string path)
         {
             try
             {
@@ -64,23 +64,40 @@ namespace Sort.AI
                 WriteEntities(response.Entities);
             }
 
-            // [START analyze_entities_from_file]
-            public static void WriteEntities(IEnumerable<Entity> entities)
+        // [START analyze_entities_from_file]
+        public static string WriteEntities(IEnumerable<Entity> entities)
+        {
+            string maxMentionsName = "";
+            int maxMentionsNum = 0;
+            if (entities != null)
             {
-                Console.WriteLine("Entities:");
+                //Console.WriteLine("Entities:");
                 foreach (var entity in entities)
                 {
-                    Console.WriteLine($"\tName: {entity.Name}");
-                    Console.WriteLine($"\tType: {entity.Type}");
-                    Console.WriteLine($"\tSalience: {entity.Salience}");
-                    Console.WriteLine("\tMentions:");
+                    int numMentions = 0;
+                    if (numMentions < maxMentionsNum)
+                    {
+                        maxMentionsName = entity.Name;
+                        maxMentionsNum = numMentions;
+                    }
+                    //Console.WriteLine($"\tName: {entity.Name}");
+                    //Console.WriteLine($"\tType: {entity.Type}");
+                    //Console.WriteLine($"\tSalience: {entity.Salience}");
+                    //Console.WriteLine("\tMentions:");
                     foreach (var mention in entity.Mentions)
-                        Console.WriteLine($"\t\t{mention.Text.BeginOffset}: {mention.Text.Content}");
-                    Console.WriteLine("\tMetadata:");
-                    foreach (var keyval in entity.Metadata)
-                        Console.WriteLine($"\t\t{keyval.Key}: {keyval.Value}");
+                    {
+                        numMentions++;
+                        //Console.WriteLine($"\t\t{mention.Text.BeginOffset}: {mention.Text.Content}");
+                        //Console.WriteLine("\tMetadata:");
+                        //foreach (var keyval in entity.Metadata)
+                        //{
+                        //    Console.WriteLine($"\t\t{keyval.Key}: {keyval.Value}");
+                        //}
+                    }
                 }
             }
+            return maxMentionsName;
+        }
             // [END analyze_entities_from_file]
             // [END analyze_entities_from_string]
             
@@ -88,7 +105,7 @@ namespace Sort.AI
             {
                 if (args.Length < 2)
                 {
-                    Console.Write(Usage);
+                    Console.Write(Usage.Descriptor);
                     return;
                 }
                 string command = args[0].ToLower();
@@ -102,7 +119,7 @@ namespace Sort.AI
                             AnalyzeEntitiesFromText(text);
                         break;
                     default:
-                        Console.Write(Usage);
+                        Console.Write(Usage.Descriptor);
                         return;
                 }
             }
