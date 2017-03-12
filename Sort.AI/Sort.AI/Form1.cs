@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Sort.AI_Forms
 {
@@ -17,6 +18,19 @@ namespace Sort.AI_Forms
             InitializeComponent();
         }
 
+        private void readFiles(string fileName, string filePath)
+        {
+            string fileExt = Path.GetExtension(fileName);
+            string[] acceptedExtensions = { ".txt" };
+            if (acceptedExtensions.Contains(fileExt))
+            {
+                string textContent = File.ReadAllText(filePath);
+            }
+
+        }
+        
+        
+        
         private void button1_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = sourceDialog.ShowDialog();
