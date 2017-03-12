@@ -41,9 +41,7 @@ namespace Sort.AI
 
         }
         
-        
-        
-        private void button1_Click(object sender, EventArgs e)
+        private void BtnSetSource_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = sourceDialog.ShowDialog();
             if (dialogResult == DialogResult.OK)
@@ -52,7 +50,7 @@ namespace Sort.AI
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void BtnSetDestination_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = destinationDialog.ShowDialog();
             if (dialogResult == DialogResult.OK)

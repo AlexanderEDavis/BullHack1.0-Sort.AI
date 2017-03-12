@@ -90,7 +90,7 @@
             this.btnSetSource.TabIndex = 2;
             this.btnSetSource.Text = "Browse";
             this.btnSetSource.UseVisualStyleBackColor = true;
-            this.btnSetSource.Click += new System.EventHandler(this.button1_Click);
+            this.btnSetSource.Click += new System.EventHandler(this.BtnSetSource_Click);
             // 
             // btnSetDestination
             // 
@@ -100,7 +100,7 @@
             this.btnSetDestination.TabIndex = 4;
             this.btnSetDestination.Text = "Browse";
             this.btnSetDestination.UseVisualStyleBackColor = true;
-            this.btnSetDestination.Click += new System.EventHandler(this.button2_Click);
+            this.btnSetDestination.Click += new System.EventHandler(this.BtnSetDestination_Click);
             // 
             // btnForceSort
             // 
