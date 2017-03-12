@@ -1,4 +1,7 @@
 ﻿using System;
+using System.IO;
+using System.Windows.Forms;
+using System.Linq;
 
 public class FileInterface
 {
@@ -7,12 +10,15 @@ public class FileInterface
         //Iterate through files in directory 'di'
         foreach (FileInfo file in di.GetFiles())
         {
-            
+            //Read text from given file
+            readFiles(file.Name, file.FullName);
+            //HTTP POST Request
+
         }
         //Recursively call PopulateFromFolder on each directory in root directory
         foreach (DirectoryInfo dir in di.GetDirectories())
         {
-            PopulateFromFolder(builder, dir, basePath);
+            PopulateFromFolder(dir, basePath);
         }
     }
 
