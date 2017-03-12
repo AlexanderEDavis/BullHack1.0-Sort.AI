@@ -93,7 +93,7 @@ namespace Sort.AI
 
         private void txtDestLocation_Validating(object sender, CancelEventArgs e)
         {
-            if (Directory.Exists(txtSourceLocation.Text) == false)
+            if (Directory.Exists(txtDestLocation.Text) == false)
             {
                 lblValidDir.Visible = true;
             }
