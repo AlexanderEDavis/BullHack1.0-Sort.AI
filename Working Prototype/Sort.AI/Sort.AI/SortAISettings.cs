@@ -21,7 +21,8 @@ namespace Sort.AI
             SortAIcon.BalloonTipText = "Sort.AI Is Running In The Background";
             SortAIcon.BalloonTipTitle = "Sort.AI";
             SortAIcon.BalloonTipIcon = ToolTipIcon.Info;
-
+            txtSourceLocation.Text = Properties.Settings.Default.SourceLocation;
+            txtDestLocation.Text = Properties.Settings.Default.DestinationLocation;
         }
 
         public static string ReadFiles(string fileName, string filePath)
@@ -47,6 +48,8 @@ namespace Sort.AI
             if (dialogResult == DialogResult.OK)
             {
                 txtSourceLocation.Text = sourceDialog.SelectedPath;
+                Properties.Settings.Default.SourceLocation = txtSourceLocation.Text;
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -56,6 +59,8 @@ namespace Sort.AI
             if (dialogResult == DialogResult.OK)
             {
                 txtDestLocation.Text = destinationDialog.SelectedPath;
+                Properties.Settings.Default.DestinationLocation = txtDestLocation.Text;
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -101,6 +106,12 @@ namespace Sort.AI
             {
                 lblValidDir.Visible = false;
             }
+        }
+
+        private void btnForceSort_Click(object sender, EventArgs e)
+        {
+            DirectoryInfo difo = new DirectoryInfo(txtSourceLocation.Text);
+            FileInterface.PopulateFromFolder(difo, txtDestLocation.Text);
         }
     }
 }
