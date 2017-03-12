@@ -44,6 +44,7 @@
             this.txtLogFiles = new System.Windows.Forms.TextBox();
             this.lblLogFiles = new System.Windows.Forms.Label();
             this.SortAIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.lblValidDir = new System.Windows.Forms.Label();
             this.grpInfo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,6 +54,7 @@
             this.txtSourceLocation.Name = "txtSourceLocation";
             this.txtSourceLocation.Size = new System.Drawing.Size(210, 20);
             this.txtSourceLocation.TabIndex = 1;
+            this.txtSourceLocation.Validating += new System.ComponentModel.CancelEventHandler(this.txtSourceLocation_Validating);
             // 
             // txtDestLocation
             // 
@@ -60,6 +62,7 @@
             this.txtDestLocation.Name = "txtDestLocation";
             this.txtDestLocation.Size = new System.Drawing.Size(210, 20);
             this.txtDestLocation.TabIndex = 3;
+            this.txtDestLocation.Validating += new System.ComponentModel.CancelEventHandler(this.txtDestLocation_Validating);
             // 
             // lblSource
             // 
@@ -155,11 +158,22 @@
             this.SortAIcon.Visible = true;
             this.SortAIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.SortAIcon_MouseDoubleClick);
             // 
+            // lblValidDir
+            // 
+            this.lblValidDir.AutoSize = true;
+            this.lblValidDir.Location = new System.Drawing.Point(80, 35);
+            this.lblValidDir.Name = "lblValidDir";
+            this.lblValidDir.Size = new System.Drawing.Size(143, 13);
+            this.lblValidDir.TabIndex = 8;
+            this.lblValidDir.Text = "Please enter a valid directory";
+            this.lblValidDir.Visible = false;
+            // 
             // SortAISettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 261);
+            this.Controls.Add(this.lblValidDir);
             this.Controls.Add(this.txtLogFiles);
             this.Controls.Add(this.grpInfo);
             this.Controls.Add(this.btnForceSort);
@@ -198,6 +212,7 @@
         private System.Windows.Forms.TextBox txtLogFiles;
         private System.Windows.Forms.Label lblLogFiles;
         private System.Windows.Forms.NotifyIcon SortAIcon;
+        private System.Windows.Forms.Label lblValidDir;
     }
 }
 
