@@ -15,7 +15,7 @@ namespace Sort.AI
             foreach (FileInfo file in di.GetFiles())
             {
                 //Read text from given file
-                SortAISettings.readFiles(file.Name, file.FullName);
+                SortAISettings.ReadFiles(file.Name, file.FullName);
                 //HTTP POST Request
                 AnalyzeEntitiesFromText(SortAISettings.fileRead);
             }
@@ -62,30 +62,6 @@ namespace Sort.AI
 
         public class Analyze
         {
-            public static string Usage = @"Usage:
-C:\> Analyze command text
-C:\> Analyze command gs://bucketName/objectName
-
-Where command is one of
-    entities
-    sentiment
-    syntax
-    everything
-";
-
-            // [START analyze_entities_from_file]
-            private static void AnalyzeEntitiesFromFile(string gcsUri)
-            {
-                var client = LanguageServiceClient.Create();
-                var response = client.AnalyzeEntities(new Document()
-                {
-                    GcsContentUri = gcsUri,
-                    Type = Document.Types.Type.PlainText
-                });
-                WriteEntities(response.Entities);
-            }
-            // [END analyze_entities_from_file]
-
             // [START analyze_entities_from_string]
             private static void AnalyzeEntitiesFromText(string text)
             {
@@ -256,5 +232,3 @@ Where command is one of
             }
         }
     }
-}
-}

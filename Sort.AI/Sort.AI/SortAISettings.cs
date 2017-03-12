@@ -24,14 +24,19 @@ namespace Sort.AI
 
         }
 
-        public static string readFiles(string fileName, string filePath)
+        public static string ReadFiles(string fileName, string filePath)
         {
             string fileExt = Path.GetExtension(fileName);
             string[] acceptedExtensions = { ".txt" };
             if (acceptedExtensions.Contains(fileExt))
             {
                 string textContent = File.ReadAllText(filePath);
-                return fileRead;
+                return textContent;
+            }
+            else
+            {
+                string textContent = "";
+                return textContent;
             }
 
         }
