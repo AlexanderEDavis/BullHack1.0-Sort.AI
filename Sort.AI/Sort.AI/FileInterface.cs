@@ -1,45 +1,110 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using System.Linq;
+using Google.Cloud.Language.V1;
+using System.Collections.Generic;
+using Google.Api;
+using static Google.Cloud.Language.V1.AnnotateTextRequest.Types;
 
-public class FileInterface
+namespace Sort.AI
 {
-    private void PopulateFromFolder(DirectoryInfo di, String basePath)
+    public class FileInterface
     {
-        //Iterate through files in directory 'di'
-        foreach (FileInfo file in di.GetFiles())
+        private void PopulateFromFolder(DirectoryInfo di, String basePath)
         {
-            //Read text from given file
-            readFiles(file.Name, file.FullName);
-            //HTTP POST Request
-
-        }
-        //Recursively call PopulateFromFolder on each directory in root directory
-        foreach (DirectoryInfo dir in di.GetDirectories())
-        {
-            PopulateFromFolder(dir, basePath);
-        }
-    }
-
-    private void ProgramFolder(string path)
-    {
-        try
-        {
-            //Check if directory already exists
-            if (Directory.Exists(path))
+            //Iterate through files in directory 'di'
+            foreach (FileInfo file in di.GetFiles())
             {
-                return;
+                //Read text from given file
+                SortAISettings.ReadFiles(file.Name, file.FullName);
+                //HTTP POST Request
+                Analyze.AnalyzeEntitiesFromText(SortAISettings.fileRead);
             }
-            //Create directory at path
-            DirectoryInfo di = Directory.CreateDirectory(path);
+            //Recursively call PopulateFromFolder on each directory in root directory
+            foreach (DirectoryInfo dir in di.GetDirectories())
+            {
+                PopulateFromFolder(dir, basePath);
+            }
         }
-        //Catch errors and display message box with error message
-        catch (Exception e)
-        {
-            MessageBox.Show(String.Format("The process failed: {0}", e.ToString()), "Folder creation failed");
-        }
-        finally { }
-    }
-}
 
+        private void ProgramFolder(string path)
+        {
+            try
+            {
+                //Check if directory already exists
+                if (Directory.Exists(path))
+                {
+                    return;
+                }
+                //Create directory at path
+                DirectoryInfo di = Directory.CreateDirectory(path);
+            }
+            //Catch errors and display message box with error message
+            catch (Exception e)
+            {
+                MessageBox.Show(String.Format("The process failed: {0}", e.ToString()), "Folder creation failed");
+            }
+            finally
+            {
+            }
+        }
+    }
+
+        public class Analyze
+        {
+            // [START analyze_entities_from_string]
+            public static void AnalyzeEntitiesFromText(string text)
+            {
+                var client = LanguageServiceClient.Create();
+                var response = client.AnalyzeEntities(new Document()
+                {
+                    Content = text,
+                    Type = Document.Types.Type.PlainText
+                });
+                WriteEntities(response.Entities);
+            }
+
+            // [START analyze_entities_from_file]
+            public static void WriteEntities(IEnumerable<Entity> entities)
+            {
+                Console.WriteLine("Entities:");
+                foreach (var entity in entities)
+                {
+                    Console.WriteLine($"\tName: {entity.Name}");
+                    Console.WriteLine($"\tType: {entity.Type}");
+                    Console.WriteLine($"\tSalience: {entity.Salience}");
+                    Console.WriteLine("\tMentions:");
+                    foreach (var mention in entity.Mentions)
+                        Console.WriteLine($"\t\t{mention.Text.BeginOffset}: {mention.Text.Content}");
+                    Console.WriteLine("\tMetadata:");
+                    foreach (var keyval in entity.Metadata)
+                        Console.WriteLine($"\t\t{keyval.Key}: {keyval.Value}");
+                }
+            }
+            // [END analyze_entities_from_file]
+            // [END analyze_entities_from_string]
+            
+            public static void Main(string[] args)
+            {
+                if (args.Length < 2)
+                {
+                    Console.Write(Usage);
+                    return;
+                }
+                string command = args[0].ToLower();
+                string text = string.Join(" ",
+                    new ArraySegment<string>(args, 1, args.Length - 1));
+                string gcsUri = args[1].ToLower().StartsWith("gs://") ? args[1] : null;
+                switch (command)
+                {
+                    case "entities":
+                        if (null == gcsUri)
+                            AnalyzeEntitiesFromText(text);
+                        break;
+                    default:
+                        Console.Write(Usage);
+                        return;
+                }
+            }
+        }
+    }

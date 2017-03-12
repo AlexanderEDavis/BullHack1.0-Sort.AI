@@ -1,0 +1,2582 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Google.Cloud.Language.V1</name>
+    </assembly>
+    <members>
+        <member name="T:Google.Cloud.Language.V1.Document">
+             <summary>
+              ################################################################ #
+            
+              Represents the input to API methods.
+             </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.Document.FromPlainText(System.String,System.String)">
+            <summary>
+            Constructs a document from a plain text string and optional language.
+            </summary>
+            <param name="text">The text of the document. Must not be null.</param>
+            <param name="language">The language of the document, as an ISO or BCP-47 language code.
+            This may be empty or null (the default), in which case the language will be detected
+            by the Natural Language service.</param>
+            <returns>The newly created document.</returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.Document.FromHtml(System.String,System.String)">
+            <summary>
+            Constructs a document from an HTML string and optional language.
+            </summary>
+            <param name="html">The HTML text of the document. Must not be null.</param>
+            <param name="language">The language of the document, as an ISO or BCP-47 language code.
+            This may be empty or null (the default), in which case the language will be detected
+            by the Natural Language service.</param>
+            <returns>The newly created document.</returns>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Document.TypeFieldNumber">
+            <summary>Field number for the "type" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.Document.Type">
+            <summary>
+             Required. If the type is not set or is `TYPE_UNSPECIFIED`,
+             returns an `INVALID_ARGUMENT` error.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Document.ContentFieldNumber">
+            <summary>Field number for the "content" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.Document.Content">
+            <summary>
+             The content of the input in string format.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Document.GcsContentUriFieldNumber">
+            <summary>Field number for the "gcs_content_uri" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.Document.GcsContentUri">
+            <summary>
+             The Google Cloud Storage URI where the file content is located.
+             This URI must be of the form: gs://bucket_name/object_name. For more
+             details, see https://cloud.google.com/storage/docs/reference-uris.
+             NOTE: Cloud Storage object versioning is not supported.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Document.LanguageFieldNumber">
+            <summary>Field number for the "language" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.Document.Language">
+             <summary>
+              The language of the document (if not specified, the language is
+              automatically detected). Both ISO and BCP-47 language codes are
+              accepted.&lt;br>
+              **Current Language Restrictions:**
+            
+               * Only English, Spanish, and Japanese textual content
+                 are supported, with the following additional restriction:
+                 * `analyzeSentiment` only supports English text.
+              If the language (either specified by the caller or automatically detected)
+              is not supported by the called API method, an `INVALID_ARGUMENT` error
+              is returned.
+             </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.Document.SourceOneofCase">
+            <summary>Enum of possible cases for the "source" oneof.</summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.Document.Types">
+            <summary>Container for nested types declared in the Document message type.</summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.Document.Types.Type">
+            <summary>
+             The document types enum.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Document.Types.Type.Unspecified">
+            <summary>
+             The content type is not specified.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Document.Types.Type.PlainText">
+            <summary>
+             Plain text
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Document.Types.Type.Html">
+            <summary>
+             HTML
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.LanguageServiceReflection">
+            <summary>Holder for reflection information generated from google/cloud/language/v1/language_service.proto</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.LanguageServiceReflection.Descriptor">
+            <summary>File descriptor for google/cloud/language/v1/language_service.proto</summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.EncodingType">
+            <summary>
+             Represents the text encoding that the caller uses to process the output.
+             Providing an `EncodingType` is recommended because the API provides the
+             beginning offsets for various outputs, such as tokens and mentions, and
+             languages that natively use different text encodings may access offsets
+             differently.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.EncodingType.None">
+            <summary>
+             If `EncodingType` is not specified, encoding-dependent information (such as
+             `begin_offset`) will be set at `-1`.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.EncodingType.Utf8">
+            <summary>
+             Encoding-dependent information (such as `begin_offset`) is calculated based
+             on the UTF-8 encoding of the input. C++ and Go are examples of languages
+             that use this encoding natively.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.EncodingType.Utf16">
+            <summary>
+             Encoding-dependent information (such as `begin_offset`) is calculated based
+             on the UTF-16 encoding of the input. Java and Javascript are examples of
+             languages that use this encoding natively.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.EncodingType.Utf32">
+            <summary>
+             Encoding-dependent information (such as `begin_offset`) is calculated based
+             on the UTF-32 encoding of the input. Python is an example of a language
+             that uses this encoding natively.
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.Sentence">
+            <summary>
+             Represents a sentence in the input document.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Sentence.TextFieldNumber">
+            <summary>Field number for the "text" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.Sentence.Text">
+            <summary>
+             The sentence text.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Sentence.SentimentFieldNumber">
+            <summary>Field number for the "sentiment" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.Sentence.Sentiment">
+            <summary>
+             For calls to [AnalyzeSentiment][] or if
+             [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_document_sentiment] is set to
+             true, this field will contain the sentiment for the sentence.
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.Entity">
+            <summary>
+             Represents a phrase in the text that is a known entity, such as
+             a person, an organization, or location. The API associates information, such
+             as salience and mentions, with entities.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Entity.NameFieldNumber">
+            <summary>Field number for the "name" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.Entity.Name">
+            <summary>
+             The representative name for the entity.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Entity.TypeFieldNumber">
+            <summary>Field number for the "type" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.Entity.Type">
+            <summary>
+             The entity type.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Entity.MetadataFieldNumber">
+            <summary>Field number for the "metadata" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.Entity.Metadata">
+             <summary>
+              Metadata associated with the entity.
+            
+              Currently, only Wikipedia URLs are provided, if available.
+              The associated key is "wikipedia_url".
+             </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Entity.SalienceFieldNumber">
+            <summary>Field number for the "salience" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.Entity.Salience">
+             <summary>
+              The salience score associated with the entity in the [0, 1.0] range.
+            
+              The salience score for an entity provides information about the
+              importance or centrality of that entity to the entire document text.
+              Scores closer to 0 are less salient, while scores closer to 1.0 are highly
+              salient.
+             </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Entity.MentionsFieldNumber">
+            <summary>Field number for the "mentions" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.Entity.Mentions">
+            <summary>
+             The mentions of this entity in the input document. The API currently
+             supports proper noun mentions.
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.Entity.Types">
+            <summary>Container for nested types declared in the Entity message type.</summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.Entity.Types.Type">
+            <summary>
+             The type of the entity.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Entity.Types.Type.Unknown">
+            <summary>
+             Unknown
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Entity.Types.Type.Person">
+            <summary>
+             Person
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Entity.Types.Type.Location">
+            <summary>
+             Location
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Entity.Types.Type.Organization">
+            <summary>
+             Organization
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Entity.Types.Type.Event">
+            <summary>
+             Event
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Entity.Types.Type.WorkOfArt">
+            <summary>
+             Work of art
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Entity.Types.Type.ConsumerGood">
+            <summary>
+             Consumer goods
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Entity.Types.Type.Other">
+            <summary>
+             Other types
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.Token">
+            <summary>
+             Represents the smallest syntactic building block of the text.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Token.TextFieldNumber">
+            <summary>Field number for the "text" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.Token.Text">
+            <summary>
+             The token text.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Token.PartOfSpeechFieldNumber">
+            <summary>Field number for the "part_of_speech" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.Token.PartOfSpeech">
+            <summary>
+             Parts of speech tag for this token.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Token.DependencyEdgeFieldNumber">
+            <summary>Field number for the "dependency_edge" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.Token.DependencyEdge">
+            <summary>
+             Dependency tree parse for this token.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Token.LemmaFieldNumber">
+            <summary>Field number for the "lemma" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.Token.Lemma">
+            <summary>
+             [Lemma](https://en.wikipedia.org/wiki/Lemma_(morphology))
+             of the token.
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.Sentiment">
+            <summary>
+             Represents the feeling associated with the entire text or entities in
+             the text.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Sentiment.MagnitudeFieldNumber">
+            <summary>Field number for the "magnitude" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.Sentiment.Magnitude">
+            <summary>
+             A non-negative number in the [0, +inf) range, which represents
+             the absolute magnitude of sentiment regardless of polarity (positive or
+             negative).
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.Sentiment.ScoreFieldNumber">
+            <summary>Field number for the "score" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.Sentiment.Score">
+            <summary>
+             Sentiment score between -1.0 (negative sentiment) and 1.0
+             (positive sentiment.)
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.PartOfSpeech">
+            <summary>
+             Represents part of speech information for a token.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.TagFieldNumber">
+            <summary>Field number for the "tag" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.PartOfSpeech.Tag">
+            <summary>
+             The part of speech tag.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.AspectFieldNumber">
+            <summary>Field number for the "aspect" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.PartOfSpeech.Aspect">
+            <summary>
+             The grammatical aspect.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.CaseFieldNumber">
+            <summary>Field number for the "case" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.PartOfSpeech.Case">
+            <summary>
+             The grammatical case.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.FormFieldNumber">
+            <summary>Field number for the "form" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.PartOfSpeech.Form">
+            <summary>
+             The grammatical form.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.GenderFieldNumber">
+            <summary>Field number for the "gender" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.PartOfSpeech.Gender">
+            <summary>
+             The grammatical gender.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.MoodFieldNumber">
+            <summary>Field number for the "mood" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.PartOfSpeech.Mood">
+            <summary>
+             The grammatical mood.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.NumberFieldNumber">
+            <summary>Field number for the "number" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.PartOfSpeech.Number">
+            <summary>
+             The grammatical number.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.PersonFieldNumber">
+            <summary>Field number for the "person" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.PartOfSpeech.Person">
+            <summary>
+             The grammatical person.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.ProperFieldNumber">
+            <summary>Field number for the "proper" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.PartOfSpeech.Proper">
+            <summary>
+             The grammatical properness.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.ReciprocityFieldNumber">
+            <summary>Field number for the "reciprocity" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.PartOfSpeech.Reciprocity">
+            <summary>
+             The grammatical reciprocity.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.TenseFieldNumber">
+            <summary>Field number for the "tense" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.PartOfSpeech.Tense">
+            <summary>
+             The grammatical tense.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.VoiceFieldNumber">
+            <summary>Field number for the "voice" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.PartOfSpeech.Voice">
+            <summary>
+             The grammatical voice.
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.PartOfSpeech.Types">
+            <summary>Container for nested types declared in the PartOfSpeech message type.</summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.PartOfSpeech.Types.Tag">
+            <summary>
+             The part of speech tags enum.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Tag.Unknown">
+            <summary>
+             Unknown
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Tag.Adj">
+            <summary>
+             Adjective
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Tag.Adp">
+            <summary>
+             Adposition (preposition and postposition)
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Tag.Adv">
+            <summary>
+             Adverb
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Tag.Conj">
+            <summary>
+             Conjunction
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Tag.Det">
+            <summary>
+             Determiner
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Tag.Noun">
+            <summary>
+             Noun (common and proper)
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Tag.Num">
+            <summary>
+             Cardinal number
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Tag.Pron">
+            <summary>
+             Pronoun
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Tag.Prt">
+            <summary>
+             Particle or other function word
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Tag.Punct">
+            <summary>
+             Punctuation
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Tag.Verb">
+            <summary>
+             Verb (all tenses and modes)
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Tag.X">
+            <summary>
+             Other: foreign words, typos, abbreviations
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Tag.Affix">
+            <summary>
+             Affix
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.PartOfSpeech.Types.Aspect">
+            <summary>
+             The characteristic of a verb that expresses time flow during an event.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Aspect.Unknown">
+            <summary>
+             Aspect is not applicable in the analyzed language or is not predicted.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Aspect.Perfective">
+            <summary>
+             Perfective
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Aspect.Imperfective">
+            <summary>
+             Imperfective
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Aspect.Progressive">
+            <summary>
+             Progressive
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.PartOfSpeech.Types.Case">
+            <summary>
+             The grammatical function performed by a noun or pronoun in a phrase,
+             clause, or sentence. In some languages, other parts of speech, such as
+             adjective and determiner, take case inflection in agreement with the noun.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Case.Unknown">
+            <summary>
+             Case is not applicable in the analyzed language or is not predicted.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Case.Accusative">
+            <summary>
+             Accusative
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Case.Adverbial">
+            <summary>
+             Adverbial
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Case.Complementive">
+            <summary>
+             Complementive
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Case.Dative">
+            <summary>
+             Dative
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Case.Genitive">
+            <summary>
+             Genitive
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Case.Instrumental">
+            <summary>
+             Instrumental
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Case.Locative">
+            <summary>
+             Locative
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Case.Nominative">
+            <summary>
+             Nominative
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Case.Oblique">
+            <summary>
+             Oblique
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Case.Partitive">
+            <summary>
+             Partitive
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Case.Prepositional">
+            <summary>
+             Prepositional
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Case.ReflexiveCase">
+            <summary>
+             Reflexive
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Case.RelativeCase">
+            <summary>
+             Relative
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Case.Vocative">
+            <summary>
+             Vocative
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.PartOfSpeech.Types.Form">
+            <summary>
+             Depending on the language, Form can be categorizing different forms of
+             verbs, adjectives, adverbs, etc. For example, categorizing inflected
+             endings of verbs and adjectives or distinguishing between short and long
+             forms of adjectives and participles
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Form.Unknown">
+            <summary>
+             Form is not applicable in the analyzed language or is not predicted.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Form.Adnomial">
+            <summary>
+             Adnomial
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Form.Auxiliary">
+            <summary>
+             Auxiliary
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Form.Complementizer">
+            <summary>
+             Complementizer
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Form.FinalEnding">
+            <summary>
+             Final ending
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Form.Gerund">
+            <summary>
+             Gerund
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Form.Realis">
+            <summary>
+             Realis
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Form.Irrealis">
+            <summary>
+             Irrealis
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Form.Short">
+            <summary>
+             Short form
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Form.Long">
+            <summary>
+             Long form
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Form.Order">
+            <summary>
+             Order form
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Form.Specific">
+            <summary>
+             Specific form
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.PartOfSpeech.Types.Gender">
+            <summary>
+             Gender classes of nouns reflected in the behaviour of associated words.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Gender.Unknown">
+            <summary>
+             Gender is not applicable in the analyzed language or is not predicted.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Gender.Feminine">
+            <summary>
+             Feminine
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Gender.Masculine">
+            <summary>
+             Masculine
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Gender.Neuter">
+            <summary>
+             Neuter
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.PartOfSpeech.Types.Mood">
+            <summary>
+             The grammatical feature of verbs, used for showing modality and attitude.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Mood.Unknown">
+            <summary>
+             Mood is not applicable in the analyzed language or is not predicted.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Mood.ConditionalMood">
+            <summary>
+             Conditional
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Mood.Imperative">
+            <summary>
+             Imperative
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Mood.Indicative">
+            <summary>
+             Indicative
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Mood.Interrogative">
+            <summary>
+             Interrogative
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Mood.Jussive">
+            <summary>
+             Jussive
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Mood.Subjunctive">
+            <summary>
+             Subjunctive
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.PartOfSpeech.Types.Number">
+            <summary>
+             Count distinctions.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Number.Unknown">
+            <summary>
+             Number is not applicable in the analyzed language or is not predicted.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Number.Singular">
+            <summary>
+             Singular
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Number.Plural">
+            <summary>
+             Plural
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Number.Dual">
+            <summary>
+             Dual
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.PartOfSpeech.Types.Person">
+            <summary>
+             The distinction between the speaker, second person, third person, etc.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Person.Unknown">
+            <summary>
+             Person is not applicable in the analyzed language or is not predicted.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Person.First">
+            <summary>
+             First
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Person.Second">
+            <summary>
+             Second
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Person.Third">
+            <summary>
+             Third
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Person.ReflexivePerson">
+            <summary>
+             Reflexive
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.PartOfSpeech.Types.Proper">
+            <summary>
+             This category shows if the token is part of a proper name.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Proper.Unknown">
+            <summary>
+             Proper is not applicable in the analyzed language or is not predicted.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Proper.Proper">
+            <summary>
+             Proper
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Proper.NotProper">
+            <summary>
+             Not proper
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.PartOfSpeech.Types.Reciprocity">
+            <summary>
+             Reciprocal features of a pronoun.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Reciprocity.Unknown">
+            <summary>
+             Reciprocity is not applicable in the analyzed language or is not
+             predicted.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Reciprocity.Reciprocal">
+            <summary>
+             Reciprocal
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Reciprocity.NonReciprocal">
+            <summary>
+             Non-reciprocal
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.PartOfSpeech.Types.Tense">
+            <summary>
+             Time reference.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Tense.Unknown">
+            <summary>
+             Tense is not applicable in the analyzed language or is not predicted.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Tense.ConditionalTense">
+            <summary>
+             Conditional
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Tense.Future">
+            <summary>
+             Future
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Tense.Past">
+            <summary>
+             Past
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Tense.Present">
+            <summary>
+             Present
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Tense.Imperfect">
+            <summary>
+             Imperfect
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Tense.Pluperfect">
+            <summary>
+             Pluperfect
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.PartOfSpeech.Types.Voice">
+            <summary>
+             The relationship between the action that a verb expresses and the
+             participants identified by its arguments.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Voice.Unknown">
+            <summary>
+             Voice is not applicable in the analyzed language or is not predicted.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Voice.Active">
+            <summary>
+             Active
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Voice.Causative">
+            <summary>
+             Causative
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.PartOfSpeech.Types.Voice.Passive">
+            <summary>
+             Passive
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.DependencyEdge">
+            <summary>
+             Represents dependency parse tree information for a token.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.HeadTokenIndexFieldNumber">
+            <summary>Field number for the "head_token_index" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.DependencyEdge.HeadTokenIndex">
+            <summary>
+             Represents the head of this token in the dependency tree.
+             This is the index of the token which has an arc going to this token.
+             The index is the position of the token in the array of tokens returned
+             by the API method. If this token is a root token, then the
+             `head_token_index` is its own index.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.LabelFieldNumber">
+            <summary>Field number for the "label" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.DependencyEdge.Label">
+            <summary>
+             The parse label for the token.
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.DependencyEdge.Types">
+            <summary>Container for nested types declared in the DependencyEdge message type.</summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.DependencyEdge.Types.Label">
+            <summary>
+             The parse label enum for the token.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Unknown">
+            <summary>
+             Unknown
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Abbrev">
+            <summary>
+             Abbreviation modifier
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Acomp">
+            <summary>
+             Adjectival complement
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Advcl">
+            <summary>
+             Adverbial clause modifier
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Advmod">
+            <summary>
+             Adverbial modifier
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Amod">
+            <summary>
+             Adjectival modifier of an NP
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Appos">
+            <summary>
+             Appositional modifier of an NP
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Attr">
+            <summary>
+             Attribute dependent of a copular verb
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Aux">
+            <summary>
+             Auxiliary (non-main) verb
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Auxpass">
+            <summary>
+             Passive auxiliary
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Cc">
+            <summary>
+             Coordinating conjunction
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Ccomp">
+            <summary>
+             Clausal complement of a verb or adjective
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Conj">
+            <summary>
+             Conjunct
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Csubj">
+            <summary>
+             Clausal subject
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Csubjpass">
+            <summary>
+             Clausal passive subject
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Dep">
+            <summary>
+             Dependency (unable to determine)
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Det">
+            <summary>
+             Determiner
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Discourse">
+            <summary>
+             Discourse
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Dobj">
+            <summary>
+             Direct object
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Expl">
+            <summary>
+             Expletive
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Goeswith">
+            <summary>
+             Goes with (part of a word in a text not well edited)
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Iobj">
+            <summary>
+             Indirect object
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Mark">
+            <summary>
+             Marker (word introducing a subordinate clause)
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Mwe">
+            <summary>
+             Multi-word expression
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Mwv">
+            <summary>
+             Multi-word verbal expression
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Neg">
+            <summary>
+             Negation modifier
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Nn">
+            <summary>
+             Noun compound modifier
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Npadvmod">
+            <summary>
+             Noun phrase used as an adverbial modifier
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Nsubj">
+            <summary>
+             Nominal subject
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Nsubjpass">
+            <summary>
+             Passive nominal subject
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Num">
+            <summary>
+             Numeric modifier of a noun
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Number">
+            <summary>
+             Element of compound number
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.P">
+            <summary>
+             Punctuation mark
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Parataxis">
+            <summary>
+             Parataxis relation
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Partmod">
+            <summary>
+             Participial modifier
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Pcomp">
+            <summary>
+             The complement of a preposition is a clause
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Pobj">
+            <summary>
+             Object of a preposition
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Poss">
+            <summary>
+             Possession modifier
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Postneg">
+            <summary>
+             Postverbal negative particle
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Precomp">
+            <summary>
+             Predicate complement
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Preconj">
+            <summary>
+             Preconjunt
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Predet">
+            <summary>
+             Predeterminer
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Pref">
+            <summary>
+             Prefix
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Prep">
+            <summary>
+             Prepositional modifier
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Pronl">
+            <summary>
+             The relationship between a verb and verbal morpheme
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Prt">
+            <summary>
+             Particle
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Ps">
+            <summary>
+             Associative or possessive marker
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Quantmod">
+            <summary>
+             Quantifier phrase modifier
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Rcmod">
+            <summary>
+             Relative clause modifier
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Rcmodrel">
+            <summary>
+             Complementizer in relative clause
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Rdrop">
+            <summary>
+             Ellipsis without a preceding predicate
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Ref">
+            <summary>
+             Referent
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Remnant">
+            <summary>
+             Remnant
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Reparandum">
+            <summary>
+             Reparandum
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Root">
+            <summary>
+             Root
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Snum">
+            <summary>
+             Suffix specifying a unit of number
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Suff">
+            <summary>
+             Suffix
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Tmod">
+            <summary>
+             Temporal modifier
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Topic">
+            <summary>
+             Topic marker
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Vmod">
+            <summary>
+             Clause headed by an infinite form of the verb that modifies a noun
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Vocative">
+            <summary>
+             Vocative
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Xcomp">
+            <summary>
+             Open clausal complement
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Suffix">
+            <summary>
+             Name suffix
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Title">
+            <summary>
+             Name title
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Advphmod">
+            <summary>
+             Adverbial phrase modifier
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Auxcaus">
+            <summary>
+             Causative auxiliary
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Auxvv">
+            <summary>
+             Helper auxiliary
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Dtmod">
+            <summary>
+             Rentaishi (Prenominal modifier)
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Foreign">
+            <summary>
+             Foreign words
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Kw">
+            <summary>
+             Keyword
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.List">
+            <summary>
+             List for chains of comparable items
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Nomc">
+            <summary>
+             Nominalized clause
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Nomcsubj">
+            <summary>
+             Nominalized clausal subject
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Nomcsubjpass">
+            <summary>
+             Nominalized clausal passive
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Numc">
+            <summary>
+             Compound of numeric modifier
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Cop">
+            <summary>
+             Copula
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.DependencyEdge.Types.Label.Dislocated">
+            <summary>
+             Dislocated relation (for fronted/topicalized elements)
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.EntityMention">
+            <summary>
+             Represents a mention for an entity in the text. Currently, proper noun
+             mentions are supported.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.EntityMention.TextFieldNumber">
+            <summary>Field number for the "text" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.EntityMention.Text">
+            <summary>
+             The mention text.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.EntityMention.TypeFieldNumber">
+            <summary>Field number for the "type" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.EntityMention.Type">
+            <summary>
+             The type of the entity mention.
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.EntityMention.Types">
+            <summary>Container for nested types declared in the EntityMention message type.</summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.EntityMention.Types.Type">
+            <summary>
+             The supported types of mentions.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.EntityMention.Types.Type.Unknown">
+            <summary>
+             Unknown
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.EntityMention.Types.Type.Proper">
+            <summary>
+             Proper name
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.EntityMention.Types.Type.Common">
+            <summary>
+             Common noun (or noun compound)
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.TextSpan">
+            <summary>
+             Represents an output piece of text.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.TextSpan.ContentFieldNumber">
+            <summary>Field number for the "content" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.TextSpan.Content">
+            <summary>
+             The content of the output text.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.TextSpan.BeginOffsetFieldNumber">
+            <summary>Field number for the "begin_offset" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.TextSpan.BeginOffset">
+            <summary>
+             The API calculates the beginning offset of the content in the original
+             document according to the [EncodingType][google.cloud.language.v1.EncodingType] specified in the API request.
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.AnalyzeSentimentRequest">
+            <summary>
+             The sentiment analysis request message.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnalyzeSentimentRequest.DocumentFieldNumber">
+            <summary>Field number for the "document" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnalyzeSentimentRequest.Document">
+            <summary>
+             Input document. Currently, `analyzeSentiment` only supports English text
+             ([Document.language][google.cloud.language.v1.Document.language]="EN").
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnalyzeSentimentRequest.EncodingTypeFieldNumber">
+            <summary>Field number for the "encoding_type" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnalyzeSentimentRequest.EncodingType">
+            <summary>
+             The encoding type used by the API to calculate sentence offsets.
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.AnalyzeSentimentResponse">
+            <summary>
+             The sentiment analysis response message.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnalyzeSentimentResponse.DocumentSentimentFieldNumber">
+            <summary>Field number for the "document_sentiment" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnalyzeSentimentResponse.DocumentSentiment">
+            <summary>
+             The overall sentiment of the input document.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnalyzeSentimentResponse.LanguageFieldNumber">
+            <summary>Field number for the "language" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnalyzeSentimentResponse.Language">
+            <summary>
+             The language of the text, which will be the same as the language specified
+             in the request or, if not specified, the automatically-detected language.
+             See `Document.language` field for more details.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnalyzeSentimentResponse.SentencesFieldNumber">
+            <summary>Field number for the "sentences" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnalyzeSentimentResponse.Sentences">
+            <summary>
+             The sentiment for all the sentences in the document.
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.AnalyzeEntitiesRequest">
+            <summary>
+             The entity analysis request message.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnalyzeEntitiesRequest.DocumentFieldNumber">
+            <summary>Field number for the "document" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnalyzeEntitiesRequest.Document">
+            <summary>
+             Input document.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnalyzeEntitiesRequest.EncodingTypeFieldNumber">
+            <summary>Field number for the "encoding_type" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnalyzeEntitiesRequest.EncodingType">
+            <summary>
+             The encoding type used by the API to calculate offsets.
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.AnalyzeEntitiesResponse">
+            <summary>
+             The entity analysis response message.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnalyzeEntitiesResponse.EntitiesFieldNumber">
+            <summary>Field number for the "entities" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnalyzeEntitiesResponse.Entities">
+            <summary>
+             The recognized entities in the input document.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnalyzeEntitiesResponse.LanguageFieldNumber">
+            <summary>Field number for the "language" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnalyzeEntitiesResponse.Language">
+            <summary>
+             The language of the text, which will be the same as the language specified
+             in the request or, if not specified, the automatically-detected language.
+             See `Document.language` field for more details.
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.AnalyzeSyntaxRequest">
+            <summary>
+             The syntax analysis request message.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnalyzeSyntaxRequest.DocumentFieldNumber">
+            <summary>Field number for the "document" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnalyzeSyntaxRequest.Document">
+            <summary>
+             Input document.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnalyzeSyntaxRequest.EncodingTypeFieldNumber">
+            <summary>Field number for the "encoding_type" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnalyzeSyntaxRequest.EncodingType">
+            <summary>
+             The encoding type used by the API to calculate offsets.
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.AnalyzeSyntaxResponse">
+            <summary>
+             The syntax analysis response message.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnalyzeSyntaxResponse.SentencesFieldNumber">
+            <summary>Field number for the "sentences" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnalyzeSyntaxResponse.Sentences">
+            <summary>
+             Sentences in the input document.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnalyzeSyntaxResponse.TokensFieldNumber">
+            <summary>Field number for the "tokens" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnalyzeSyntaxResponse.Tokens">
+            <summary>
+             Tokens, along with their syntactic information, in the input document.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnalyzeSyntaxResponse.LanguageFieldNumber">
+            <summary>Field number for the "language" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnalyzeSyntaxResponse.Language">
+            <summary>
+             The language of the text, which will be the same as the language specified
+             in the request or, if not specified, the automatically-detected language.
+             See `Document.language` field for more details.
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.AnnotateTextRequest">
+            <summary>
+             The request message for the text annotation API, which can perform multiple
+             analysis types (sentiment, entities, and syntax) in one call.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnnotateTextRequest.DocumentFieldNumber">
+            <summary>Field number for the "document" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnnotateTextRequest.Document">
+            <summary>
+             Input document.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnnotateTextRequest.FeaturesFieldNumber">
+            <summary>Field number for the "features" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnnotateTextRequest.Features">
+            <summary>
+             The enabled features.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnnotateTextRequest.EncodingTypeFieldNumber">
+            <summary>Field number for the "encoding_type" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnnotateTextRequest.EncodingType">
+            <summary>
+             The encoding type used by the API to calculate offsets.
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.AnnotateTextRequest.Types">
+            <summary>Container for nested types declared in the AnnotateTextRequest message type.</summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.AnnotateTextRequest.Types.Features">
+            <summary>
+             All available features for sentiment, syntax, and semantic analysis.
+             Setting each one to true will enable that specific analysis for the input.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnnotateTextRequest.Types.Features.ExtractSyntaxFieldNumber">
+            <summary>Field number for the "extract_syntax" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnnotateTextRequest.Types.Features.ExtractSyntax">
+            <summary>
+             Extract syntax information.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnnotateTextRequest.Types.Features.ExtractEntitiesFieldNumber">
+            <summary>Field number for the "extract_entities" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnnotateTextRequest.Types.Features.ExtractEntities">
+            <summary>
+             Extract entities.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnnotateTextRequest.Types.Features.ExtractDocumentSentimentFieldNumber">
+            <summary>Field number for the "extract_document_sentiment" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnnotateTextRequest.Types.Features.ExtractDocumentSentiment">
+            <summary>
+             Extract document-level sentiment.
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.AnnotateTextResponse">
+            <summary>
+             The text annotations response message.
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnnotateTextResponse.SentencesFieldNumber">
+            <summary>Field number for the "sentences" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnnotateTextResponse.Sentences">
+            <summary>
+             Sentences in the input document. Populated if the user enables
+             [AnnotateTextRequest.Features.extract_syntax][google.cloud.language.v1.AnnotateTextRequest.Features.extract_syntax].
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnnotateTextResponse.TokensFieldNumber">
+            <summary>Field number for the "tokens" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnnotateTextResponse.Tokens">
+            <summary>
+             Tokens, along with their syntactic information, in the input document.
+             Populated if the user enables
+             [AnnotateTextRequest.Features.extract_syntax][google.cloud.language.v1.AnnotateTextRequest.Features.extract_syntax].
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnnotateTextResponse.EntitiesFieldNumber">
+            <summary>Field number for the "entities" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnnotateTextResponse.Entities">
+            <summary>
+             Entities, along with their semantic information, in the input document.
+             Populated if the user enables
+             [AnnotateTextRequest.Features.extract_entities][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entities].
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnnotateTextResponse.DocumentSentimentFieldNumber">
+            <summary>Field number for the "document_sentiment" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnnotateTextResponse.DocumentSentiment">
+            <summary>
+             The overall sentiment for the document. Populated if the user enables
+             [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_document_sentiment].
+            </summary>
+        </member>
+        <member name="F:Google.Cloud.Language.V1.AnnotateTextResponse.LanguageFieldNumber">
+            <summary>Field number for the "language" field.</summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.AnnotateTextResponse.Language">
+            <summary>
+             The language of the text, which will be the same as the language specified
+             in the request or, if not specified, the automatically-detected language.
+             See `Document.language` field for more details.
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.LanguageServiceSettings">
+            <summary>
+            Settings for a <see cref="T:Google.Cloud.Language.V1.LanguageServiceClient"/>.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceSettings.GetDefault">
+            <summary>
+            Get a new instance of the default <see cref="T:Google.Cloud.Language.V1.LanguageServiceSettings"/>.
+            </summary>
+            <returns>
+            A new instance of the default <see cref="T:Google.Cloud.Language.V1.LanguageServiceSettings"/>.
+            </returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceSettings.#ctor">
+            <summary>
+            Constructs a new <see cref="T:Google.Cloud.Language.V1.LanguageServiceSettings"/> object with default settings.
+            </summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.LanguageServiceSettings.IdempotentRetryFilter">
+            <summary>
+            The filter specifying which RPC <see cref="T:Grpc.Core.StatusCode"/>s are eligible for retry
+            for "Idempotent" <see cref="T:Google.Cloud.Language.V1.LanguageServiceClient"/> RPC methods.
+            </summary>
+            <remarks>
+            The eligible RPC <see cref="T:Grpc.Core.StatusCode"/>s for retry for "Idempotent" RPC methods are:
+            <list type="bullet">
+            <item><description><see cref="F:Grpc.Core.StatusCode.DeadlineExceeded"/></description></item>
+            <item><description><see cref="F:Grpc.Core.StatusCode.Unavailable"/></description></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.LanguageServiceSettings.NonIdempotentRetryFilter">
+            <summary>
+            The filter specifying which RPC <see cref="T:Grpc.Core.StatusCode"/>s are eligible for retry
+            for "NonIdempotent" <see cref="T:Google.Cloud.Language.V1.LanguageServiceClient"/> RPC methods.
+            </summary>
+            <remarks>
+            There are no RPC <see cref="T:Grpc.Core.StatusCode"/>s eligible for retry for "NonIdempotent" RPC methods.
+            </remarks>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceSettings.GetDefaultRetryBackoff">
+            <summary>
+            "Default" retry backoff for <see cref="T:Google.Cloud.Language.V1.LanguageServiceClient"/> RPC methods.
+            </summary>
+            <returns>
+            The "Default" retry backoff for <see cref="T:Google.Cloud.Language.V1.LanguageServiceClient"/> RPC methods.
+            </returns>
+            <remarks>
+            The "Default" retry backoff for <see cref="T:Google.Cloud.Language.V1.LanguageServiceClient"/> RPC methods is defined as:
+            <list type="bullet">
+            <item><description>Initial delay: 100 milliseconds</description></item>
+            <item><description>Maximum delay: 60000 milliseconds</description></item>
+            <item><description>Delay multiplier: 1.3</description></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceSettings.GetDefaultTimeoutBackoff">
+            <summary>
+            "Default" timeout backoff for <see cref="T:Google.Cloud.Language.V1.LanguageServiceClient"/> RPC methods.
+            </summary>
+            <returns>
+            The "Default" timeout backoff for <see cref="T:Google.Cloud.Language.V1.LanguageServiceClient"/> RPC methods.
+            </returns>
+            <remarks>
+            The "Default" timeout backoff for <see cref="T:Google.Cloud.Language.V1.LanguageServiceClient"/> RPC methods is defined as:
+            <list type="bullet">
+            <item><description>Initial timeout: 60000 milliseconds</description></item>
+            <item><description>Timeout multiplier: 1.0</description></item>
+            <item><description>Maximum timeout: 60000 milliseconds</description></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.LanguageServiceSettings.AnalyzeSentimentSettings">
+            <summary>
+            <see cref="T:Google.Api.Gax.Grpc.CallSettings"/> for synchronous and asynchronous calls to
+            <c>LanguageServiceClient.AnalyzeSentiment</c> and <c>LanguageServiceClient.AnalyzeSentimentAsync</c>.
+            </summary>
+            <remarks>
+            The default <c>LanguageServiceClient.AnalyzeSentiment</c> and
+            <c>LanguageServiceClient.AnalyzeSentimentAsync</c> <see cref="T:Google.Api.Gax.Grpc.RetrySettings"/> are:
+            <list type="bullet">
+            <item><description>Initial retry delay: 100 milliseconds</description></item>
+            <item><description>Retry delay multiplier: 1.3</description></item>
+            <item><description>Retry maximum delay: 60000 milliseconds</description></item>
+            <item><description>Initial timeout: 60000 milliseconds</description></item>
+            <item><description>Timeout multiplier: 1.0</description></item>
+            <item><description>Timeout maximum delay: 60000 milliseconds</description></item>
+            </list>
+            Retry will be attempted on the following response status codes:
+            <list>
+            <item><description><see cref="F:Grpc.Core.StatusCode.DeadlineExceeded"/></description></item>
+            <item><description><see cref="F:Grpc.Core.StatusCode.Unavailable"/></description></item>
+            </list>
+            Default RPC expiration is 600000 milliseconds.
+            </remarks>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.LanguageServiceSettings.AnalyzeEntitiesSettings">
+            <summary>
+            <see cref="T:Google.Api.Gax.Grpc.CallSettings"/> for synchronous and asynchronous calls to
+            <c>LanguageServiceClient.AnalyzeEntities</c> and <c>LanguageServiceClient.AnalyzeEntitiesAsync</c>.
+            </summary>
+            <remarks>
+            The default <c>LanguageServiceClient.AnalyzeEntities</c> and
+            <c>LanguageServiceClient.AnalyzeEntitiesAsync</c> <see cref="T:Google.Api.Gax.Grpc.RetrySettings"/> are:
+            <list type="bullet">
+            <item><description>Initial retry delay: 100 milliseconds</description></item>
+            <item><description>Retry delay multiplier: 1.3</description></item>
+            <item><description>Retry maximum delay: 60000 milliseconds</description></item>
+            <item><description>Initial timeout: 60000 milliseconds</description></item>
+            <item><description>Timeout multiplier: 1.0</description></item>
+            <item><description>Timeout maximum delay: 60000 milliseconds</description></item>
+            </list>
+            Retry will be attempted on the following response status codes:
+            <list>
+            <item><description><see cref="F:Grpc.Core.StatusCode.DeadlineExceeded"/></description></item>
+            <item><description><see cref="F:Grpc.Core.StatusCode.Unavailable"/></description></item>
+            </list>
+            Default RPC expiration is 600000 milliseconds.
+            </remarks>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.LanguageServiceSettings.AnalyzeSyntaxSettings">
+            <summary>
+            <see cref="T:Google.Api.Gax.Grpc.CallSettings"/> for synchronous and asynchronous calls to
+            <c>LanguageServiceClient.AnalyzeSyntax</c> and <c>LanguageServiceClient.AnalyzeSyntaxAsync</c>.
+            </summary>
+            <remarks>
+            The default <c>LanguageServiceClient.AnalyzeSyntax</c> and
+            <c>LanguageServiceClient.AnalyzeSyntaxAsync</c> <see cref="T:Google.Api.Gax.Grpc.RetrySettings"/> are:
+            <list type="bullet">
+            <item><description>Initial retry delay: 100 milliseconds</description></item>
+            <item><description>Retry delay multiplier: 1.3</description></item>
+            <item><description>Retry maximum delay: 60000 milliseconds</description></item>
+            <item><description>Initial timeout: 60000 milliseconds</description></item>
+            <item><description>Timeout multiplier: 1.0</description></item>
+            <item><description>Timeout maximum delay: 60000 milliseconds</description></item>
+            </list>
+            Retry will be attempted on the following response status codes:
+            <list>
+            <item><description><see cref="F:Grpc.Core.StatusCode.DeadlineExceeded"/></description></item>
+            <item><description><see cref="F:Grpc.Core.StatusCode.Unavailable"/></description></item>
+            </list>
+            Default RPC expiration is 600000 milliseconds.
+            </remarks>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.LanguageServiceSettings.AnnotateTextSettings">
+            <summary>
+            <see cref="T:Google.Api.Gax.Grpc.CallSettings"/> for synchronous and asynchronous calls to
+            <c>LanguageServiceClient.AnnotateText</c> and <c>LanguageServiceClient.AnnotateTextAsync</c>.
+            </summary>
+            <remarks>
+            The default <c>LanguageServiceClient.AnnotateText</c> and
+            <c>LanguageServiceClient.AnnotateTextAsync</c> <see cref="T:Google.Api.Gax.Grpc.RetrySettings"/> are:
+            <list type="bullet">
+            <item><description>Initial retry delay: 100 milliseconds</description></item>
+            <item><description>Retry delay multiplier: 1.3</description></item>
+            <item><description>Retry maximum delay: 60000 milliseconds</description></item>
+            <item><description>Initial timeout: 60000 milliseconds</description></item>
+            <item><description>Timeout multiplier: 1.0</description></item>
+            <item><description>Timeout maximum delay: 60000 milliseconds</description></item>
+            </list>
+            Retry will be attempted on the following response status codes:
+            <list>
+            <item><description><see cref="F:Grpc.Core.StatusCode.DeadlineExceeded"/></description></item>
+            <item><description><see cref="F:Grpc.Core.StatusCode.Unavailable"/></description></item>
+            </list>
+            Default RPC expiration is 600000 milliseconds.
+            </remarks>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceSettings.Clone">
+            <summary>
+            Creates a deep clone of this object, with all the same property values.
+            </summary>
+            <returns>A deep clone of this <see cref="T:Google.Cloud.Language.V1.LanguageServiceSettings"/> object.</returns>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.LanguageServiceClient">
+            <summary>
+            LanguageService client wrapper, for convenient use.
+            </summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.LanguageServiceClient.DefaultEndpoint">
+            <summary>
+            The default endpoint for the LanguageService service, which is a host of "language.googleapis.com" and a port of 443.
+            </summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.LanguageServiceClient.DefaultScopes">
+            <summary>
+            The default LanguageService scopes.
+            </summary>
+            <remarks>
+            The default LanguageService scopes are:
+            <list type="bullet">
+            <item><description>"https://www.googleapis.com/auth/cloud-platform"</description></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.CreateAsync(Google.Api.Gax.Grpc.ServiceEndpoint,Google.Cloud.Language.V1.LanguageServiceSettings)">
+            <summary>
+            Asynchronously creates a <see cref="T:Google.Cloud.Language.V1.LanguageServiceClient"/>, applying defaults for all unspecified settings,
+            and creating a channel connecting to the given endpoint with application default credentials where
+            necessary.
+            </summary>
+            <param name="endpoint">Optional <see cref="T:Google.Api.Gax.Grpc.ServiceEndpoint"/>.</param>
+            <param name="settings">Optional <see cref="T:Google.Cloud.Language.V1.LanguageServiceSettings"/>.</param>
+            <returns>The task representing the created <see cref="T:Google.Cloud.Language.V1.LanguageServiceClient"/>.</returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.Create(Google.Api.Gax.Grpc.ServiceEndpoint,Google.Cloud.Language.V1.LanguageServiceSettings)">
+            <summary>
+            Synchronously creates a <see cref="T:Google.Cloud.Language.V1.LanguageServiceClient"/>, applying defaults for all unspecified settings,
+            and creating a channel connecting to the given endpoint with application default credentials where
+            necessary.
+            </summary>
+            <param name="endpoint">Optional <see cref="T:Google.Api.Gax.Grpc.ServiceEndpoint"/>.</param>
+            <param name="settings">Optional <see cref="T:Google.Cloud.Language.V1.LanguageServiceSettings"/>.</param>
+            <returns>The created <see cref="T:Google.Cloud.Language.V1.LanguageServiceClient"/>.</returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.Create(Grpc.Core.Channel,Google.Cloud.Language.V1.LanguageServiceSettings)">
+            <summary>
+            Creates a <see cref="T:Google.Cloud.Language.V1.LanguageServiceClient"/> which uses the specified channel for remote operations.
+            </summary>
+            <param name="channel">The <see cref="T:Grpc.Core.Channel"/> for remote operations. Must not be null.</param>
+            <param name="settings">Optional <see cref="T:Google.Cloud.Language.V1.LanguageServiceSettings"/>.</param>
+            <returns>The created <see cref="T:Google.Cloud.Language.V1.LanguageServiceClient"/>.</returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.ShutdownDefaultChannelsAsync">
+            <summary>
+            Shuts down any channels automatically created by <see cref="M:Google.Cloud.Language.V1.LanguageServiceClient.Create(Google.Api.Gax.Grpc.ServiceEndpoint,Google.Cloud.Language.V1.LanguageServiceSettings)"/>
+            and <see cref="M:Google.Cloud.Language.V1.LanguageServiceClient.CreateAsync(Google.Api.Gax.Grpc.ServiceEndpoint,Google.Cloud.Language.V1.LanguageServiceSettings)"/>. Channels which weren't automatically
+            created are not affected.
+            </summary>
+            <remarks>After calling this method, further calls to <see cref="M:Google.Cloud.Language.V1.LanguageServiceClient.Create(Google.Api.Gax.Grpc.ServiceEndpoint,Google.Cloud.Language.V1.LanguageServiceSettings)"/>
+            and <see cref="M:Google.Cloud.Language.V1.LanguageServiceClient.CreateAsync(Google.Api.Gax.Grpc.ServiceEndpoint,Google.Cloud.Language.V1.LanguageServiceSettings)"/> will create new channels, which could
+            in turn be shut down by another call to this method.</remarks>
+            <returns>A task representing the asynchronous shutdown operation.</returns>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.LanguageServiceClient.GrpcClient">
+            <summary>
+            The underlying gRPC LanguageService client.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.AnalyzeSentimentAsync(Google.Cloud.Language.V1.Document,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            Analyzes the sentiment of the provided text.
+            </summary>
+            <param name="document">
+            Input document. Currently, `analyzeSentiment` only supports English text
+            ([Document.language][google.cloud.language.v1.Document.language]="EN").
+            </param>
+            <param name="callSettings">
+            If not null, applies overrides to this RPC call.
+            </param>
+            <returns>
+            A Task containing the RPC response.
+            </returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.AnalyzeSentimentAsync(Google.Cloud.Language.V1.Document,System.Threading.CancellationToken)">
+            <summary>
+            Analyzes the sentiment of the provided text.
+            </summary>
+            <param name="document">
+            Input document. Currently, `analyzeSentiment` only supports English text
+            ([Document.language][google.cloud.language.v1.Document.language]="EN").
+            </param>
+            <param name="cancellationToken">
+            A <see cref="T:System.Threading.CancellationToken"/> to use for this RPC.
+            </param>
+            <returns>
+            A Task containing the RPC response.
+            </returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.AnalyzeSentiment(Google.Cloud.Language.V1.Document,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            Analyzes the sentiment of the provided text.
+            </summary>
+            <param name="document">
+            Input document. Currently, `analyzeSentiment` only supports English text
+            ([Document.language][google.cloud.language.v1.Document.language]="EN").
+            </param>
+            <param name="callSettings">
+            If not null, applies overrides to this RPC call.
+            </param>
+            <returns>
+            The RPC response.
+            </returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.AnalyzeEntitiesAsync(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.EncodingType,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            Finds named entities (currently finds proper names) in the text,
+            entity types, salience, mentions for each entity, and other properties.
+            </summary>
+            <param name="document">
+            Input document.
+            </param>
+            <param name="encodingType">
+            The encoding type used by the API to calculate offsets.
+            </param>
+            <param name="callSettings">
+            If not null, applies overrides to this RPC call.
+            </param>
+            <returns>
+            A Task containing the RPC response.
+            </returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.AnalyzeEntitiesAsync(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.EncodingType,System.Threading.CancellationToken)">
+            <summary>
+            Finds named entities (currently finds proper names) in the text,
+            entity types, salience, mentions for each entity, and other properties.
+            </summary>
+            <param name="document">
+            Input document.
+            </param>
+            <param name="encodingType">
+            The encoding type used by the API to calculate offsets.
+            </param>
+            <param name="cancellationToken">
+            A <see cref="T:System.Threading.CancellationToken"/> to use for this RPC.
+            </param>
+            <returns>
+            A Task containing the RPC response.
+            </returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.AnalyzeEntities(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.EncodingType,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            Finds named entities (currently finds proper names) in the text,
+            entity types, salience, mentions for each entity, and other properties.
+            </summary>
+            <param name="document">
+            Input document.
+            </param>
+            <param name="encodingType">
+            The encoding type used by the API to calculate offsets.
+            </param>
+            <param name="callSettings">
+            If not null, applies overrides to this RPC call.
+            </param>
+            <returns>
+            The RPC response.
+            </returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.AnalyzeSyntaxAsync(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.EncodingType,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            Analyzes the syntax of the text and provides sentence boundaries and
+            tokenization along with part of speech tags, dependency trees, and other
+            properties.
+            </summary>
+            <param name="document">
+            Input document.
+            </param>
+            <param name="encodingType">
+            The encoding type used by the API to calculate offsets.
+            </param>
+            <param name="callSettings">
+            If not null, applies overrides to this RPC call.
+            </param>
+            <returns>
+            A Task containing the RPC response.
+            </returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.AnalyzeSyntaxAsync(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.EncodingType,System.Threading.CancellationToken)">
+            <summary>
+            Analyzes the syntax of the text and provides sentence boundaries and
+            tokenization along with part of speech tags, dependency trees, and other
+            properties.
+            </summary>
+            <param name="document">
+            Input document.
+            </param>
+            <param name="encodingType">
+            The encoding type used by the API to calculate offsets.
+            </param>
+            <param name="cancellationToken">
+            A <see cref="T:System.Threading.CancellationToken"/> to use for this RPC.
+            </param>
+            <returns>
+            A Task containing the RPC response.
+            </returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.AnalyzeSyntax(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.EncodingType,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            Analyzes the syntax of the text and provides sentence boundaries and
+            tokenization along with part of speech tags, dependency trees, and other
+            properties.
+            </summary>
+            <param name="document">
+            Input document.
+            </param>
+            <param name="encodingType">
+            The encoding type used by the API to calculate offsets.
+            </param>
+            <param name="callSettings">
+            If not null, applies overrides to this RPC call.
+            </param>
+            <returns>
+            The RPC response.
+            </returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.AnnotateTextAsync(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.AnnotateTextRequest.Types.Features,Google.Cloud.Language.V1.EncodingType,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            A convenience method that provides all the features that analyzeSentiment,
+            analyzeEntities, and analyzeSyntax provide in one call.
+            </summary>
+            <param name="document">
+            Input document.
+            </param>
+            <param name="features">
+            The enabled features.
+            </param>
+            <param name="encodingType">
+            The encoding type used by the API to calculate offsets.
+            </param>
+            <param name="callSettings">
+            If not null, applies overrides to this RPC call.
+            </param>
+            <returns>
+            A Task containing the RPC response.
+            </returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.AnnotateTextAsync(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.AnnotateTextRequest.Types.Features,Google.Cloud.Language.V1.EncodingType,System.Threading.CancellationToken)">
+            <summary>
+            A convenience method that provides all the features that analyzeSentiment,
+            analyzeEntities, and analyzeSyntax provide in one call.
+            </summary>
+            <param name="document">
+            Input document.
+            </param>
+            <param name="features">
+            The enabled features.
+            </param>
+            <param name="encodingType">
+            The encoding type used by the API to calculate offsets.
+            </param>
+            <param name="cancellationToken">
+            A <see cref="T:System.Threading.CancellationToken"/> to use for this RPC.
+            </param>
+            <returns>
+            A Task containing the RPC response.
+            </returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.AnnotateText(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.AnnotateTextRequest.Types.Features,Google.Cloud.Language.V1.EncodingType,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            A convenience method that provides all the features that analyzeSentiment,
+            analyzeEntities, and analyzeSyntax provide in one call.
+            </summary>
+            <param name="document">
+            Input document.
+            </param>
+            <param name="features">
+            The enabled features.
+            </param>
+            <param name="encodingType">
+            The encoding type used by the API to calculate offsets.
+            </param>
+            <param name="callSettings">
+            If not null, applies overrides to this RPC call.
+            </param>
+            <returns>
+            The RPC response.
+            </returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.AnalyzeEntities(Google.Cloud.Language.V1.Document,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            Analyzes the entities in the given document, specifying an <see cref="T:Google.Cloud.Language.V1.EncodingType"/> of
+            UTF-16 for offsets.
+            </summary>
+            <remarks>
+            This method simply calls <see cref="M:Google.Cloud.Language.V1.LanguageServiceClient.AnalyzeEntities(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.EncodingType,Google.Api.Gax.Grpc.CallSettings)"/>,
+            passing an <see cref="T:Google.Cloud.Language.V1.EncodingType"/> of UTF-16. This is the encoding used internally by
+            .NET strings, so the offsets returned by the analysis will be suitable for use in calls
+            such as <see cref="M:System.String.Substring(System.Int32,System.Int32)"/>.
+            </remarks>
+            <param name="document">The document to analyze.</param>
+            <param name="callSettings">The call settings to apply to the RPC, if any.</param>
+            <returns>The result of the entity analysis.</returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.AnalyzeEntitiesAsync(Google.Cloud.Language.V1.Document,System.Threading.CancellationToken)">
+            <summary>
+            Analyzes the entities in the given document asynchronously, specifying an <see cref="T:Google.Cloud.Language.V1.EncodingType"/> of
+            UTF-16 for offsets.
+            </summary>
+            <remarks>
+            This method simply calls <see cref="M:Google.Cloud.Language.V1.LanguageServiceClient.AnalyzeEntitiesAsync(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.EncodingType,System.Threading.CancellationToken)"/>,
+            passing an <see cref="T:Google.Cloud.Language.V1.EncodingType"/> of UTF-16. This is the encoding used internally by
+            .NET strings, so the offsets returned by the analysis will be suitable for use in calls
+            such as <see cref="M:System.String.Substring(System.Int32,System.Int32)"/>.
+            </remarks>
+            <param name="document">The document to analyze.</param>
+            <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> to use for this RPC.</param>
+            <returns>A task representing the asynchronous operation. The result of the task is the entity analysis response.</returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.AnalyzeEntitiesAsync(Google.Cloud.Language.V1.Document,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            Analyzes the entities in the given document asynchronously, specifying an <see cref="T:Google.Cloud.Language.V1.EncodingType"/> of
+            UTF-16 for offsets.
+            </summary>
+            <remarks>
+            This method simply calls <see cref="M:Google.Cloud.Language.V1.LanguageServiceClient.AnalyzeEntitiesAsync(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.EncodingType,Google.Api.Gax.Grpc.CallSettings)"/>,
+            passing an <see cref="T:Google.Cloud.Language.V1.EncodingType"/> of UTF-16. This is the encoding used internally by
+            .NET strings, so the offsets returned by the analysis will be suitable for use in calls
+            such as <see cref="M:System.String.Substring(System.Int32,System.Int32)"/>.
+            </remarks>
+            <param name="document">The document to analyze.</param>
+            <param name="callSettings">The call settings to apply to the RPC, if any.</param>
+            <returns>A task representing the asynchronous operation. The result of the task is the entity analysis response.</returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.AnalyzeSyntax(Google.Cloud.Language.V1.Document,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            Analyzes the syntax in the given document, specifying an <see cref="T:Google.Cloud.Language.V1.EncodingType"/> of
+            UTF-16 for offsets.
+            </summary>
+            <remarks>
+            This method simply calls <see cref="M:Google.Cloud.Language.V1.LanguageServiceClient.AnalyzeSyntax(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.EncodingType,Google.Api.Gax.Grpc.CallSettings)"/>,
+            passing an <see cref="T:Google.Cloud.Language.V1.EncodingType"/> of UTF-16. This is the encoding used internally by
+            .NET strings, so the offsets returned by the analysis will be suitable for use in calls
+            such as <see cref="M:System.String.Substring(System.Int32,System.Int32)"/>.
+            </remarks>
+            <param name="document">The document to analyze.</param>
+            <param name="callSettings">The call settings to apply to the RPC, if any.</param>
+            <returns>The result of the entity analysis.</returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.AnalyzeSyntaxAsync(Google.Cloud.Language.V1.Document,System.Threading.CancellationToken)">
+            <summary>
+            Analyzes the syntax in the given document asynchronously, specifying an <see cref="T:Google.Cloud.Language.V1.EncodingType"/> of
+            UTF-16 for offsets.
+            </summary>
+            <remarks>
+            This method simply calls <see cref="M:Google.Cloud.Language.V1.LanguageServiceClient.AnalyzeSyntaxAsync(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.EncodingType,System.Threading.CancellationToken)"/>,
+            passing an <see cref="T:Google.Cloud.Language.V1.EncodingType"/> of UTF-16. This is the encoding used internally by
+            .NET strings, so the offsets returned by the analysis will be suitable for use in calls
+            such as <see cref="M:System.String.Substring(System.Int32,System.Int32)"/>.
+            </remarks>
+            <param name="document">The document to analyze.</param>
+            <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> to use for this RPC.</param>
+            <returns>A task representing the asynchronous operation. The result of the task is the entity analysis response.</returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.AnalyzeSyntaxAsync(Google.Cloud.Language.V1.Document,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            Analyzes the syntax in the given document asynchronously, specifying an <see cref="T:Google.Cloud.Language.V1.EncodingType"/> of
+            UTF-16 for offsets.
+            </summary>
+            <remarks>
+            This method simply calls <see cref="M:Google.Cloud.Language.V1.LanguageServiceClient.AnalyzeSyntaxAsync(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.EncodingType,Google.Api.Gax.Grpc.CallSettings)"/>,
+            passing an <see cref="T:Google.Cloud.Language.V1.EncodingType"/> of UTF-16. This is the encoding used internally by
+            .NET strings, so the offsets returned by the analysis will be suitable for use in calls
+            such as <see cref="M:System.String.Substring(System.Int32,System.Int32)"/>.
+            </remarks>
+            <param name="document">The document to analyze.</param>
+            <param name="callSettings">The call settings to apply to the RPC, if any.</param>
+            <returns>A task representing the asynchronous operation. The result of the task is the entity analysis response.</returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.AnnotateText(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.AnnotateTextRequest.Types.Features,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            Annotates the given document, specifying an <see cref="T:Google.Cloud.Language.V1.EncodingType"/> of
+            UTF-16 for offsets.
+            </summary>
+            <remarks>
+            This method simply calls <see cref="M:Google.Cloud.Language.V1.LanguageServiceClient.AnnotateText(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.AnnotateTextRequest.Types.Features,Google.Api.Gax.Grpc.CallSettings)"/>,
+            passing an <see cref="T:Google.Cloud.Language.V1.EncodingType"/> of UTF-16. This is the encoding used internally by
+            .NET strings, so the offsets returned by the analysis will be suitable for use in calls
+            such as <see cref="M:System.String.Substring(System.Int32,System.Int32)"/>.
+            </remarks>
+            <param name="document">The document to annotate.</param>
+            <param name="features">The analysis features to enable.</param>
+            <param name="callSettings">The call settings to apply to the RPC, if any.</param>
+            <returns>The result of the text analysis.</returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.AnnotateTextAsync(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.AnnotateTextRequest.Types.Features,System.Threading.CancellationToken)">
+            <summary>
+            Annotates the given document, specifying an <see cref="T:Google.Cloud.Language.V1.EncodingType"/> of
+            UTF-16 for offsets.
+            </summary>
+            <remarks>
+            This method simply calls <see cref="M:Google.Cloud.Language.V1.LanguageServiceClient.AnnotateTextAsync(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.AnnotateTextRequest.Types.Features,System.Threading.CancellationToken)"/>,
+            passing an <see cref="T:Google.Cloud.Language.V1.EncodingType"/> of UTF-16. This is the encoding used internally by
+            .NET strings, so the offsets returned by the analysis will be suitable for use in calls
+            such as <see cref="M:System.String.Substring(System.Int32,System.Int32)"/>.
+            </remarks>
+            <param name="document">The document to annotate.</param>
+            <param name="features">The analysis features to enable.</param>
+            <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> to use for this RPC.</param>
+            <returns>A task representing the asynchronous operation. The result of the task is the text analysis response.</returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClient.AnnotateTextAsync(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.AnnotateTextRequest.Types.Features,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            Annotates the given document, specifying an <see cref="T:Google.Cloud.Language.V1.EncodingType"/> of
+            UTF-16 for offsets.
+            </summary>
+            <remarks>
+            This method simply calls <see cref="M:Google.Cloud.Language.V1.LanguageServiceClient.AnnotateTextAsync(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.AnnotateTextRequest.Types.Features,Google.Api.Gax.Grpc.CallSettings)"/>,
+            passing an <see cref="T:Google.Cloud.Language.V1.EncodingType"/> of UTF-16. This is the encoding used internally by
+            .NET strings, so the offsets returned by the analysis will be suitable for use in calls
+            such as <see cref="M:System.String.Substring(System.Int32,System.Int32)"/>.
+            </remarks>
+            <param name="document">The document to annotate.</param>
+            <param name="features">The analysis features to enable.</param>
+            <param name="callSettings">The call settings to apply to the RPC, if any.</param>
+            <returns>A task representing the asynchronous operation. The result of the task is the text analysis response.</returns>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.LanguageServiceClientImpl">
+            <summary>
+            LanguageService client wrapper implementation, for convenient use.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClientImpl.#ctor(Google.Cloud.Language.V1.LanguageService.LanguageServiceClient,Google.Cloud.Language.V1.LanguageServiceSettings)">
+            <summary>
+            Constructs a client wrapper for the LanguageService service, with the specified gRPC client and settings.
+            </summary>
+            <param name="grpcClient">The underlying gRPC client.</param>
+            <param name="settings">The base <see cref="T:Google.Cloud.Language.V1.LanguageServiceSettings"/> used within this client </param>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.LanguageServiceClientImpl.GrpcClient">
+            <summary>
+            The underlying gRPC LanguageService client.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClientImpl.AnalyzeSentimentAsync(Google.Cloud.Language.V1.Document,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            Analyzes the sentiment of the provided text.
+            </summary>
+            <param name="document">
+            Input document. Currently, `analyzeSentiment` only supports English text
+            ([Document.language][google.cloud.language.v1.Document.language]="EN").
+            </param>
+            <param name="callSettings">
+            If not null, applies overrides to this RPC call.
+            </param>
+            <returns>
+            A Task containing the RPC response.
+            </returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClientImpl.AnalyzeSentiment(Google.Cloud.Language.V1.Document,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            Analyzes the sentiment of the provided text.
+            </summary>
+            <param name="document">
+            Input document. Currently, `analyzeSentiment` only supports English text
+            ([Document.language][google.cloud.language.v1.Document.language]="EN").
+            </param>
+            <param name="callSettings">
+            If not null, applies overrides to this RPC call.
+            </param>
+            <returns>
+            The RPC response.
+            </returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClientImpl.AnalyzeEntitiesAsync(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.EncodingType,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            Finds named entities (currently finds proper names) in the text,
+            entity types, salience, mentions for each entity, and other properties.
+            </summary>
+            <param name="document">
+            Input document.
+            </param>
+            <param name="encodingType">
+            The encoding type used by the API to calculate offsets.
+            </param>
+            <param name="callSettings">
+            If not null, applies overrides to this RPC call.
+            </param>
+            <returns>
+            A Task containing the RPC response.
+            </returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClientImpl.AnalyzeEntities(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.EncodingType,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            Finds named entities (currently finds proper names) in the text,
+            entity types, salience, mentions for each entity, and other properties.
+            </summary>
+            <param name="document">
+            Input document.
+            </param>
+            <param name="encodingType">
+            The encoding type used by the API to calculate offsets.
+            </param>
+            <param name="callSettings">
+            If not null, applies overrides to this RPC call.
+            </param>
+            <returns>
+            The RPC response.
+            </returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClientImpl.AnalyzeSyntaxAsync(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.EncodingType,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            Analyzes the syntax of the text and provides sentence boundaries and
+            tokenization along with part of speech tags, dependency trees, and other
+            properties.
+            </summary>
+            <param name="document">
+            Input document.
+            </param>
+            <param name="encodingType">
+            The encoding type used by the API to calculate offsets.
+            </param>
+            <param name="callSettings">
+            If not null, applies overrides to this RPC call.
+            </param>
+            <returns>
+            A Task containing the RPC response.
+            </returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClientImpl.AnalyzeSyntax(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.EncodingType,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            Analyzes the syntax of the text and provides sentence boundaries and
+            tokenization along with part of speech tags, dependency trees, and other
+            properties.
+            </summary>
+            <param name="document">
+            Input document.
+            </param>
+            <param name="encodingType">
+            The encoding type used by the API to calculate offsets.
+            </param>
+            <param name="callSettings">
+            If not null, applies overrides to this RPC call.
+            </param>
+            <returns>
+            The RPC response.
+            </returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClientImpl.AnnotateTextAsync(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.AnnotateTextRequest.Types.Features,Google.Cloud.Language.V1.EncodingType,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            A convenience method that provides all the features that analyzeSentiment,
+            analyzeEntities, and analyzeSyntax provide in one call.
+            </summary>
+            <param name="document">
+            Input document.
+            </param>
+            <param name="features">
+            The enabled features.
+            </param>
+            <param name="encodingType">
+            The encoding type used by the API to calculate offsets.
+            </param>
+            <param name="callSettings">
+            If not null, applies overrides to this RPC call.
+            </param>
+            <returns>
+            A Task containing the RPC response.
+            </returns>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageServiceClientImpl.AnnotateText(Google.Cloud.Language.V1.Document,Google.Cloud.Language.V1.AnnotateTextRequest.Types.Features,Google.Cloud.Language.V1.EncodingType,Google.Api.Gax.Grpc.CallSettings)">
+            <summary>
+            A convenience method that provides all the features that analyzeSentiment,
+            analyzeEntities, and analyzeSyntax provide in one call.
+            </summary>
+            <param name="document">
+            Input document.
+            </param>
+            <param name="features">
+            The enabled features.
+            </param>
+            <param name="encodingType">
+            The encoding type used by the API to calculate offsets.
+            </param>
+            <param name="callSettings">
+            If not null, applies overrides to this RPC call.
+            </param>
+            <returns>
+            The RPC response.
+            </returns>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.LanguageService">
+            <summary>
+             Provides text analysis operations such as sentiment analysis and entity
+             recognition.
+            </summary>
+        </member>
+        <member name="P:Google.Cloud.Language.V1.LanguageService.Descriptor">
+            <summary>Service descriptor</summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.LanguageService.LanguageServiceBase">
+            <summary>Base class for server-side implementations of LanguageService</summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceBase.AnalyzeSentiment(Google.Cloud.Language.V1.AnalyzeSentimentRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+             Analyzes the sentiment of the provided text.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceBase.AnalyzeEntities(Google.Cloud.Language.V1.AnalyzeEntitiesRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+             Finds named entities (currently finds proper names) in the text,
+             entity types, salience, mentions for each entity, and other properties.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceBase.AnalyzeSyntax(Google.Cloud.Language.V1.AnalyzeSyntaxRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+             Analyzes the syntax of the text and provides sentence boundaries and
+             tokenization along with part of speech tags, dependency trees, and other
+             properties.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceBase.AnnotateText(Google.Cloud.Language.V1.AnnotateTextRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+             A convenience method that provides all the features that analyzeSentiment,
+             analyzeEntities, and analyzeSyntax provide in one call.
+            </summary>
+        </member>
+        <member name="T:Google.Cloud.Language.V1.LanguageService.LanguageServiceClient">
+            <summary>Client for LanguageService</summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceClient.#ctor(Grpc.Core.Channel)">
+            <summary>Creates a new client for LanguageService</summary>
+            <param name="channel">The channel to use to make remote calls.</param>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceClient.#ctor(Grpc.Core.CallInvoker)">
+            <summary>Creates a new client for LanguageService that uses a custom <c>CallInvoker</c>.</summary>
+            <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceClient.#ctor">
+            <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceClient.#ctor(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Protected constructor to allow creation of configured clients.</summary>
+            <param name="configuration">The client configuration.</param>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceClient.AnalyzeSentiment(Google.Cloud.Language.V1.AnalyzeSentimentRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+             Analyzes the sentiment of the provided text.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceClient.AnalyzeSentiment(Google.Cloud.Language.V1.AnalyzeSentimentRequest,Grpc.Core.CallOptions)">
+            <summary>
+             Analyzes the sentiment of the provided text.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceClient.AnalyzeSentimentAsync(Google.Cloud.Language.V1.AnalyzeSentimentRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+             Analyzes the sentiment of the provided text.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceClient.AnalyzeSentimentAsync(Google.Cloud.Language.V1.AnalyzeSentimentRequest,Grpc.Core.CallOptions)">
+            <summary>
+             Analyzes the sentiment of the provided text.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceClient.AnalyzeEntities(Google.Cloud.Language.V1.AnalyzeEntitiesRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+             Finds named entities (currently finds proper names) in the text,
+             entity types, salience, mentions for each entity, and other properties.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceClient.AnalyzeEntities(Google.Cloud.Language.V1.AnalyzeEntitiesRequest,Grpc.Core.CallOptions)">
+            <summary>
+             Finds named entities (currently finds proper names) in the text,
+             entity types, salience, mentions for each entity, and other properties.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceClient.AnalyzeEntitiesAsync(Google.Cloud.Language.V1.AnalyzeEntitiesRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+             Finds named entities (currently finds proper names) in the text,
+             entity types, salience, mentions for each entity, and other properties.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceClient.AnalyzeEntitiesAsync(Google.Cloud.Language.V1.AnalyzeEntitiesRequest,Grpc.Core.CallOptions)">
+            <summary>
+             Finds named entities (currently finds proper names) in the text,
+             entity types, salience, mentions for each entity, and other properties.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceClient.AnalyzeSyntax(Google.Cloud.Language.V1.AnalyzeSyntaxRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+             Analyzes the syntax of the text and provides sentence boundaries and
+             tokenization along with part of speech tags, dependency trees, and other
+             properties.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceClient.AnalyzeSyntax(Google.Cloud.Language.V1.AnalyzeSyntaxRequest,Grpc.Core.CallOptions)">
+            <summary>
+             Analyzes the syntax of the text and provides sentence boundaries and
+             tokenization along with part of speech tags, dependency trees, and other
+             properties.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceClient.AnalyzeSyntaxAsync(Google.Cloud.Language.V1.AnalyzeSyntaxRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+             Analyzes the syntax of the text and provides sentence boundaries and
+             tokenization along with part of speech tags, dependency trees, and other
+             properties.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceClient.AnalyzeSyntaxAsync(Google.Cloud.Language.V1.AnalyzeSyntaxRequest,Grpc.Core.CallOptions)">
+            <summary>
+             Analyzes the syntax of the text and provides sentence boundaries and
+             tokenization along with part of speech tags, dependency trees, and other
+             properties.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceClient.AnnotateText(Google.Cloud.Language.V1.AnnotateTextRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+             A convenience method that provides all the features that analyzeSentiment,
+             analyzeEntities, and analyzeSyntax provide in one call.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceClient.AnnotateText(Google.Cloud.Language.V1.AnnotateTextRequest,Grpc.Core.CallOptions)">
+            <summary>
+             A convenience method that provides all the features that analyzeSentiment,
+             analyzeEntities, and analyzeSyntax provide in one call.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceClient.AnnotateTextAsync(Google.Cloud.Language.V1.AnnotateTextRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+             A convenience method that provides all the features that analyzeSentiment,
+             analyzeEntities, and analyzeSyntax provide in one call.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.LanguageServiceClient.AnnotateTextAsync(Google.Cloud.Language.V1.AnnotateTextRequest,Grpc.Core.CallOptions)">
+            <summary>
+             A convenience method that provides all the features that analyzeSentiment,
+             analyzeEntities, and analyzeSyntax provide in one call.
+            </summary>
+        </member>
+        <member name="M:Google.Cloud.Language.V1.LanguageService.BindService(Google.Cloud.Language.V1.LanguageService.LanguageServiceBase)">
+            <summary>Creates service definition that can be registered with a server</summary>
+        </member>
+    </members>
+</doc>
