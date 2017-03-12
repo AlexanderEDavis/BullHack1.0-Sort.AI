@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.ServiceProcess;
+using System.Text;
 
 namespace Sort.AI
 {
@@ -11,12 +13,14 @@ namespace Sort.AI
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SortAISettings());
+            ServiceBase[] ServicesToRun;
+            ServicesToRun = new ServiceBase[]
+            {
+                new SortAiService()
+            };
+            ServiceBase.Run(ServicesToRun);
         }
     }
 }
